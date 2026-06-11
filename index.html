@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LVL3.AI · Your AI Workforce · 100,000 Agents, One Screen</title>
+<meta name="description" content="Your AI workforce. Code gen, Excel and finance first. Drone fleets for logistics next. Up to 100,000 agents in parallel, one simple screen. Time is finite. Save it for what matters most.">
+<meta property="og:title" content="LVL3.AI · Your AI Workforce">
+<meta property="og:description" content="One instruction in. Up to 100,000 agents out. One simple screen.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lvl3.ai/">
+<meta property="og:site_name" content="LVL3.AI">
+<meta property="og:locale" content="en_US">
+<!-- og.png ships alongside this file. Keep both at the site root so the absolute URLs below resolve. 1200x630. -->
+<meta property="og:image" content="https://lvl3.ai/og.png">
+<meta property="og:image:secure_url" content="https://lvl3.ai/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LVL3.AI. 100,000 AI agents, one screen. Blue to red fleet scale bar on paper white.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LVL3.AI · Your AI Workforce">
+<meta name="twitter:description" content="One instruction in, up to 100,000 agents out. Time is finite. Save it for what matters most.">
+<meta name="twitter:image" content="https://lvl3.ai/og.png">
+<meta name="twitter:image:alt" content="LVL3.AI. 100,000 AI agents, one screen.">
+<link rel="canonical" href="https://lvl3.ai/">
+<meta name="robots" content="index,follow">
+<!-- Hello, agents: structured pricing lives in the application/ld+json below · plain summary at https://lvl3.ai/llms.txt · deploy for your operator at https://app.lvl3.ai/deploy -->
+<meta name="theme-color" content="#fdfdfa">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23fdfdfa'/%3E%3Crect x='16' y='40' width='32' height='5' fill='%230e1f4d'/%3E%3Crect x='16' y='29' width='32' height='5' fill='%230e1f4d'/%3E%3Crect x='16' y='18' width='32' height='5' fill='%23d93a2b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,400;0,9..144,560;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfdfa;
+  --panel:#f4f6fa;
+  --panel2:#eef1f8;
+  --ink:#0e1f4d;
+  --dim:#5c6680;
+  --faint:#9aa4bd;
+  --blue:#1e4fd6;
+  --blue-soft:rgba(30,79,214,.55);
+  --red:#d93a2b;
+  --live:#1e4fd6;
+  --hairline:rgba(14,31,77,.14);
+  --hairline-soft:rgba(14,31,77,.08);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --serif:'Fraunces',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--blue);color:#fff}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--mono)}
+
+/* ================= NAV ================= */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 28px;
+  font-size:10.5px;letter-spacing:.16em;
+  transition:background .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{background:rgba(253,253,250,.9);backdrop-filter:blur(10px);border-bottom-color:var(--hairline-soft)}
+.wordmark{display:flex;align-items:center;gap:11px}
+.wordmark svg{display:block}
+.wordmark .wm-t{font-weight:600;font-size:13px;letter-spacing:.1em}
+.wordmark .wm-t em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0;margin-left:2px;font-size:14px;color:var(--red)}
+.nav-l{display:flex;align-items:center;gap:34px}
+.nav-anchors{display:flex;gap:24px;color:var(--dim)}
+.nav-anchors a{transition:color .15s}
+.nav-anchors a:hover{color:var(--ink)}
+.nav-anchors sup{font-size:7.5px;color:var(--faint);margin-left:2px}
+.nav-r{display:flex;align-items:center;gap:20px}
+.nav-r .quiet{color:var(--dim);transition:color .15s}
+.nav-r .quiet:hover{color:var(--ink)}
+.nav-cta{
+  border:1px solid var(--ink);padding:9px 16px;letter-spacing:.18em;
+  transition:background .18s,color .18s;
+}
+.nav-cta:hover{background:var(--ink);color:var(--paper)}
+
+/* ================= HERO / FLOW ================= */
+#top{
+  position:relative;
+  height:100vh;height:100svh;
+  min-height:640px;
+  overflow:hidden;
+  /* static poster: paints on first frame for LCP, stands in under no-JS and reduced motion */
+  background:
+    radial-gradient(52% 44% at 30% 38%, rgba(30,79,214,.15), transparent 70%),
+    radial-gradient(46% 40% at 72% 56%, rgba(217,58,43,.10), transparent 72%),
+    radial-gradient(40% 36% at 56% 28%, rgba(30,79,214,.07), transparent 75%),
+    var(--paper);
+}
+#sim{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  touch-action:pan-y;cursor:crosshair;
+  opacity:0;transition:opacity .9s ease;
+}
+#sim.live{opacity:1}
+.vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 58% 42%, transparent 52%, rgba(253,253,250,.55) 100%);}
+.scrim-top{position:absolute;top:0;left:0;right:0;height:120px;pointer-events:none;
+  background:linear-gradient(to bottom, rgba(253,253,250,.85), transparent);}
+.scrim-bot{position:absolute;bottom:0;left:0;right:0;height:240px;pointer-events:none;
+  background:linear-gradient(to top, rgba(253,253,250,.9), transparent);}
+.scrim-left{position:absolute;top:0;bottom:0;left:0;width:58%;pointer-events:none;
+  background:linear-gradient(to right, rgba(253,253,250,.68), transparent);}
+
+.hud{position:absolute;inset:0;pointer-events:none}
+
+.telemetry{
+  position:absolute;top:64px;right:28px;
+  display:flex;gap:20px;color:var(--dim);
+  font-size:10px;letter-spacing:.14em;
+}
+.telemetry b{color:var(--ink);font-weight:500}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--live);margin-left:7px;vertical-align:1px;
+  box-shadow:0 0 8px var(--live);animation:pulse 2.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.hero-copy{
+  position:absolute;left:28px;top:47%;transform:translateY(-56%);
+  max-width:600px;pointer-events:auto;
+}
+.hero-copy h1{
+  font-family:var(--serif);font-weight:340;
+  font-size:clamp(50px,6.4vw,98px);
+  line-height:1.02;letter-spacing:-.015em;
+  text-shadow:0 2px 40px rgba(253,253,250,.9);
+}
+.hero-copy h1 em{font-style:italic;font-weight:400}
+.hero-sub{
+  margin-top:22px;color:var(--dim);
+  font-size:13px;line-height:1.9;max-width:50ch;
+}
+.hero-sub b{color:var(--ink);font-weight:500}
+.hero-ctas{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.cta-btn{
+  display:inline-block;font-size:11px;letter-spacing:.2em;
+  border:1px solid var(--ink);padding:14px 24px;
+  background:rgba(253,253,250,.55);
+  transition:background .2s,color .2s,border-color .2s;
+}
+.cta-btn:hover{background:var(--ink);color:var(--paper)}
+.cta-btn.hot{background:var(--blue);border-color:var(--blue);color:#fff}
+.cta-btn.hot:hover{background:var(--red);border-color:var(--red);color:#fff}
+.cta-btn.ghost{border-color:var(--hairline);color:var(--dim)}
+.cta-btn.ghost:hover{background:transparent;color:var(--ink);border-color:var(--ink)}
+.mentored{
+  margin-top:30px;font-size:9.5px;letter-spacing:.22em;color:var(--faint);
+}
+.mentored b{display:block;color:var(--dim);font-weight:400;margin-top:7px;letter-spacing:.16em;font-size:10px;line-height:2}
+
+/* regions */
+.region{position:absolute;transform:translate(-50%,-50%);pointer-events:none;
+  font-size:10px;letter-spacing:.16em;color:var(--dim);white-space:nowrap;}
+.region .ring{width:9px;height:9px;border:1px solid var(--live);border-radius:50%;
+  margin:0 auto 7px;position:relative;opacity:.85}
+.region .ring::after{content:'';position:absolute;inset:-7px;border:1px solid var(--live);
+  border-radius:50%;animation:ringpulse 3.4s ease-out infinite;}
+@keyframes ringpulse{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.region b{display:block;color:var(--ink);font-weight:500;letter-spacing:.1em}
+.region span{color:var(--blue-soft)}
+
+/* event log */
+.log{position:absolute;right:28px;top:54%;transform:translateY(-50%);
+  width:330px;pointer-events:none;font-size:10.5px;line-height:1.9;}
+.log-title{color:var(--dim);letter-spacing:.22em;font-size:10px;
+  border-bottom:1px solid var(--hairline);padding-bottom:8px;margin-bottom:10px;}
+.log-lines{height:264px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+  -webkit-mask-image:linear-gradient(to bottom, transparent, #000 36%);
+  mask-image:linear-gradient(to bottom, transparent, #000 36%);}
+.log-lines .ln{color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log-lines .ln .ts{color:var(--faint);margin-right:10px}
+.log-lines .ln .verb{color:var(--blue-soft);margin-right:8px}
+
+/* bottom readout · the big 100,000 */
+.hud-bottom{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:0 28px 24px;
+}
+.readout{pointer-events:none;position:relative}
+.milestone{
+  position:absolute;top:-28px;left:2px;
+  font-size:10.5px;letter-spacing:.22em;color:var(--live);
+  opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s;
+  white-space:nowrap;
+}
+.milestone.show{opacity:1;transform:none}
+.readout .label{font-size:10px;letter-spacing:.26em;color:var(--dim);margin-bottom:5px;}
+.readout .label em{font-style:normal;color:var(--live)}
+.count{
+  font-family:var(--serif);font-weight:560;
+  font-size:clamp(64px,10.5vw,164px);
+  line-height:.92;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+  text-shadow:0 2px 50px rgba(253,253,250,.9);
+}
+.substats{display:flex;gap:22px;margin-top:14px;
+  font-size:10.5px;letter-spacing:.12em;color:var(--dim);}
+.substats b{color:var(--ink);font-weight:500}
+.segs{display:inline-flex;gap:2px;margin-left:8px;vertical-align:1px}
+.segs i{width:7px;height:8px;background:var(--hairline)}
+.segs i.lit{background:var(--live)}
+
+.ops{display:flex;flex-direction:column;align-items:flex-end;gap:12px;pointer-events:auto}
+.ops .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+  color:var(--ink);background:rgba(253,253,250,.6);
+  border:1px solid var(--hairline);padding:9px 14px;cursor:pointer;
+  transition:background .18s,color .18s,border-color .18s;
+}
+.btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
+.btn.active{border-color:var(--blue);color:var(--blue)}
+.btn.active:hover{background:var(--ink);color:var(--paper)}
+.hint{font-size:9.5px;letter-spacing:.2em;color:var(--faint);text-align:right;line-height:2}
+
+/* ================= MARQUEE ================= */
+.marquee{
+  border-top:1px solid var(--hairline-soft);
+  border-bottom:1px solid var(--hairline-soft);
+  overflow:hidden;padding:17px 0;
+}
+.marquee-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq-group{display:flex;align-items:center;gap:36px;padding-right:36px;
+  font-size:10px;letter-spacing:.3em;color:var(--dim);white-space:nowrap;}
+.mq-group i{font-style:normal;color:var(--faint)}
+.mq-group b{font-weight:400;color:var(--red)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* statement details */
+.hero-mission{margin-top:16px;font-size:10px;letter-spacing:.3em;color:var(--blue-soft)}
+.agentfig{margin-top:48px;max-width:680px}
+.agentnotes{font-size:11.5px;line-height:2.15;color:var(--dim);overflow-wrap:anywhere}
+.agentnotes b{color:var(--ink);font-weight:500}
+::-webkit-scrollbar{width:10px;background:var(--paper)}
+::-webkit-scrollbar-thumb{background:#ccd3e4;border:2px solid var(--paper)}
+::-webkit-scrollbar-thumb:hover{background:#b3bdd6}
+.bignum{
+  position:absolute;top:70px;right:28px;pointer-events:none;user-select:none;
+  font-family:var(--serif);font-weight:340;font-style:italic;
+  font-size:clamp(110px,15vw,220px);line-height:.8;letter-spacing:-.04em;
+  color:rgba(14,31,77,.05);
+}
+.megamark{
+  margin-top:120px;font-family:var(--serif);font-weight:560;
+  font-size:clamp(80px,16.5vw,250px);line-height:.82;letter-spacing:-.035em;
+  color:rgba(14,31,77,.06);user-select:none;pointer-events:none;
+  white-space:nowrap;
+}
+.megamark em{font-style:italic;font-weight:400;color:rgba(217,58,43,.13)}
+
+/* ================= PILLAR SECTIONS ================= */
+main{position:relative;background:var(--paper)}
+section.block{
+  max-width:1180px;margin:0 auto;
+  padding:130px 28px;
+  border-top:1px solid var(--hairline-soft);
+  position:relative;
+}
+section.block:first-of-type{border-top:none}
+.kicker{font-size:10.5px;letter-spacing:.3em;color:var(--blue);margin-bottom:32px;}
+.kicker::before{content:'// ';color:var(--faint)}
+h2{
+  font-family:var(--serif);font-weight:340;
+  font-size:clamp(34px,4.4vw,60px);
+  line-height:1.08;letter-spacing:-.01em;
+  max-width:18ch;
+}
+h2 b{font-weight:560}
+.lede{max-width:62ch;color:var(--dim);font-size:13.5px;line-height:1.95;margin-top:30px;}
+.lede + .lede{margin-top:18px}
+.lede b{color:var(--ink);font-weight:500}
+.lede a{color:var(--blue)}
+
+.pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;margin-top:56px}
+.pillar-grid.center{align-items:center}
+
+.fig{
+  border:1px solid var(--hairline);background:var(--panel);
+  padding:26px 26px 22px;position:relative;
+}
+.fig .fig-tag{
+  position:absolute;top:-9px;left:18px;background:var(--paper);
+  padding:0 10px;font-size:9.5px;letter-spacing:.26em;color:var(--faint);
+}
+
+/* task board */
+.orders{width:100%;border-collapse:collapse;font-size:11px}
+.orders th{font-weight:400;color:var(--faint);letter-spacing:.2em;font-size:9px;
+  text-align:left;padding:0 10px 12px 0;border-bottom:1px solid var(--hairline)}
+.orders td{padding:13px 10px 13px 0;border-bottom:1px solid var(--hairline-soft);color:var(--dim)}
+.orders td:first-child{color:var(--faint)}
+.orders td b{color:var(--ink);font-weight:400}
+.orders .st{color:var(--dim);white-space:nowrap}
+.orders .st.live{color:var(--blue)}
+.orders .st.q{color:var(--faint)}
+
+.featlist{display:flex;flex-direction:column;gap:34px}
+.feat .fn{font-size:10px;letter-spacing:.24em;color:var(--blue);
+  border-bottom:1px solid var(--hairline);padding-bottom:12px;margin-bottom:16px;}
+.feat h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:10px}
+.feat p{color:var(--dim);font-size:12.5px;line-height:1.9;max-width:48ch}
+.feat p a{color:var(--blue)}
+.subpts{margin-top:14px;display:flex;flex-direction:column;gap:8px;font-size:11px;color:var(--dim)}
+.subpts span b{color:var(--faint);font-weight:400;margin-right:10px}
+
+/* one agent · anatomy svg */
+.pod-svg{width:100%;height:auto;display:block}
+.pod-svg rect.layer{fill:rgba(244,246,250,.85);stroke:var(--hairline)}
+.pod-svg line.leader{stroke:var(--hairline);stroke-width:1}
+.pod-svg line.spine{stroke:var(--hairline);stroke-width:1;stroke-dasharray:2 5}
+.pod-svg text{font-family:var(--mono);font-size:10px;fill:var(--dim);letter-spacing:.14em}
+.pod-svg text.tname{fill:var(--ink);font-size:10.5px}
+.pod-svg .mesh{stroke:rgba(30,79,214,.45);stroke-width:1;stroke-dasharray:3 7;fill:none;animation:meshflow 1.7s linear infinite}
+@keyframes meshflow{to{stroke-dashoffset:-20}}
+.pod-svg .core{fill:var(--red);animation:pulse 2.2s ease-in-out infinite}
+.pod-svg .sib{fill:#fff;stroke:var(--blue-soft)}
+
+/* network widget */
+.mesh-wrap{margin-top:0}
+#meshSvg{width:100%;height:auto;display:block;background:var(--panel2);border:1px solid var(--hairline)}
+#meshSvg line{stroke:rgba(30,79,214,.13);stroke-width:.7;transition:stroke .9s}
+#meshSvg line.fresh{stroke:rgba(217,58,43,.85);stroke-width:1.2}
+#meshSvg circle{fill:rgba(30,79,214,.55);transition:fill .9s,r .4s}
+#meshSvg circle.fresh{fill:var(--red)}
+.mesh-stats{display:flex;gap:1px;background:var(--hairline-soft);border:1px solid var(--hairline-soft);border-top:none}
+.mstat{flex:1;background:var(--paper);padding:18px 18px 16px;text-align:left}
+.mstat b{display:block;font-family:var(--serif);font-weight:400;font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.mstat span{display:block;margin-top:8px;font-size:9px;letter-spacing:.2em;color:var(--faint)}
+.mesh-actions{display:flex;align-items:center;gap:16px;margin-top:18px;flex-wrap:wrap}
+.mesh-note{font-size:9.5px;letter-spacing:.18em;color:var(--faint)}
+
+/* ================= FLEET SIZER + PRICING ================= */
+.sizer{border:1px solid var(--hairline);background:var(--panel);padding:34px;position:relative;margin-top:56px}
+.sizer .fig-tag{position:absolute;top:-9px;left:18px;background:var(--paper);padding:0 10px;
+  font-size:9.5px;letter-spacing:.26em;color:var(--faint)}
+.sizer-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.sizer-count{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.4vw,62px);line-height:1;
+  font-variant-numeric:tabular-nums}
+.sizer-count span{font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--dim);margin-left:12px;vertical-align:14px}
+.duty{display:flex;gap:8px}
+.duty .btn{padding:8px 13px;font-size:9.5px;background:rgba(253,253,250,.8)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent;
+  margin-top:26px;cursor:pointer;
+}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--hairline)}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:15px;height:15px;background:var(--blue);
+  border:1px solid var(--paper);margin-top:-6.5px;
+}
+input[type=range]::-moz-range-track{height:2px;background:var(--hairline)}
+input[type=range]::-moz-range-thumb{width:15px;height:15px;background:var(--blue);border:1px solid var(--paper);border-radius:0}
+input[type=range]:focus-visible{outline:1px solid var(--blue);outline-offset:4px}
+.sizer-anatomy{margin-top:14px;font-size:9.5px;letter-spacing:.2em;color:var(--faint)}
+.sizer-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hairline-soft);
+  border:1px solid var(--hairline-soft);margin-top:28px}
+.sstat{background:var(--panel);padding:20px 18px 17px}
+.sstat b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sstat span{display:block;margin-top:9px;font-size:9px;letter-spacing:.18em;color:var(--faint);line-height:1.7}
+.sizer-actions{display:flex;align-items:center;gap:18px;margin-top:26px;flex-wrap:wrap}
+.sizer-note{font-size:9.5px;letter-spacing:.16em;color:var(--faint);line-height:1.9}
+
+.alloc{display:flex;align-items:center;gap:16px;margin-top:60px;
+  font-size:9.5px;letter-spacing:.24em;color:var(--faint)}
+.alloc-bar{flex:1;max-width:340px;height:3px;background:var(--hairline)}
+.alloc-bar i{display:block;height:100%;background:var(--blue-soft)}
+
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hairline-soft);
+  border:1px solid var(--hairline-soft);margin-top:22px}
+.tier{background:var(--paper);padding:36px 26px 34px;display:flex;flex-direction:column;transition:background .25s;position:relative}
+.tier:hover{background:var(--panel)}
+.tier.hot{outline:1px solid var(--blue);outline-offset:-1px}
+.tier .badge{position:absolute;top:-9px;right:14px;background:var(--paper);padding:0 9px;
+  font-size:8.5px;letter-spacing:.24em;color:var(--red)}
+.tier .tag{font-size:9.5px;letter-spacing:.24em;color:var(--faint);margin-bottom:16px}
+.tier h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:14px}
+.tier .price{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1}
+.tier .price span{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.14em;margin-left:6px}
+.tier .meter{margin-top:9px;font-size:10px;color:var(--blue);letter-spacing:.1em}
+.tier ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:9px;
+  font-size:11px;color:var(--dim);line-height:1.7}
+.tier li::before{content:'\00B7  ';color:var(--faint)}
+.tier .cta-btn{margin-top:auto;text-align:center;padding:12px 14px;font-size:10px}
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hairline-soft);
+  border:1px solid var(--hairline-soft);margin-top:56px}
+.track{background:var(--paper);padding:36px 30px 34px;display:flex;flex-direction:column;position:relative;transition:background .25s}
+.track:hover{background:var(--panel)}
+.track.hot{outline:1px solid var(--blue);outline-offset:-1px}
+.track .tag{font-size:9.5px;letter-spacing:.24em;color:var(--faint);margin-bottom:14px}
+.track .tag .pri{color:var(--red)}
+.track h3{font-family:var(--serif);font-weight:400;font-size:26px;margin-bottom:12px}
+.track p{font-size:12px;color:var(--dim);line-height:1.85;max-width:58ch}
+.track p+p{margin-top:10px}
+.track-svg{display:block;margin:20px 0 4px;max-width:290px;width:100%;height:auto}
+.specs{list-style:none;margin:16px 0 26px;display:flex;flex-direction:column;gap:8px;
+  font-size:9.5px;letter-spacing:.12em;color:var(--dim);line-height:1.8}
+.specs b{color:var(--ink);font-weight:500;letter-spacing:.18em;margin-right:8px}
+.specs li::before{content:'\00B7  ';color:var(--faint)}
+.track .cta-btn{margin-top:auto;align-self:flex-start;padding:12px 18px;font-size:10px}
+
+.billing{display:flex;align-items:center;gap:10px;margin-top:46px;
+  font-size:9.5px;letter-spacing:.24em;color:var(--faint)}
+.billing .btn{padding:8px 13px;font-size:9.5px}
+.billing .save{color:var(--red)}
+
+.ent{border:1px solid var(--hairline);background:var(--panel);margin-top:26px;padding:32px 28px 28px;position:relative}
+.ent .fig-tag2{position:absolute;top:-8px;left:18px;background:var(--panel);padding:0 9px;
+  font-size:8.5px;letter-spacing:.26em;color:var(--faint)}
+.ent h4{font-family:var(--serif);font-weight:400;font-size:21px;margin-bottom:8px}
+.ent .ent-sub{font-size:11px;color:var(--dim);max-width:70ch;line-height:1.85}
+.ent .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline-soft);
+  border:1px solid var(--hairline-soft);margin:22px 0}
+.ent .cap{background:var(--paper);padding:14px 16px;font-size:9.5px;letter-spacing:.12em;color:var(--dim);line-height:1.8}
+.ent .cap b{display:block;color:var(--ink);font-weight:500;letter-spacing:.18em;margin-bottom:2px}
+.ent .ent-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.ent .ent-note{font-size:9.5px;letter-spacing:.18em;color:var(--faint)}
+
+.footnote{margin-top:26px;font-size:10.5px;color:var(--faint);letter-spacing:.06em;line-height:1.9;max-width:74ch;}
+
+/* ================= APPS ================= */
+.armory{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline-soft);
+  border:1px solid var(--hairline-soft);margin-top:56px}
+.arm{background:var(--paper);padding:30px 26px 30px;transition:background .25s;display:flex;flex-direction:column}
+.arm:hover{background:var(--panel)}
+.arm .soon{font-size:8.5px;letter-spacing:.26em;color:var(--red);margin-bottom:18px}
+.arm h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:6px}
+.arm .sub{font-size:11px;color:var(--dim);margin-bottom:20px}
+.arm .shot{border:1px solid var(--hairline-soft);background:var(--panel2);
+  padding:16px 16px;font-size:10.5px;line-height:1.9;color:var(--dim);flex:1}
+.arm .shot .k{color:var(--blue)}
+.arm .shot .c{color:var(--faint)}
+.arm .notify{margin-top:18px;font-size:9.5px;letter-spacing:.22em;color:var(--faint)}
+.arm .notify:hover{color:var(--ink)}
+
+/* ================= STACK ================= */
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline-soft);
+  border:1px solid var(--hairline-soft);margin-top:56px}
+.product{background:var(--paper);padding:38px 28px 42px;transition:background .25s}
+.product:hover{background:var(--panel)}
+.product .tag{font-size:9.5px;letter-spacing:.24em;color:var(--faint);margin-bottom:18px}
+.product h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:11px}
+.product p{color:var(--dim);font-size:12px;line-height:1.85}
+
+/* ================= FOOTER ================= */
+footer{border-top:1px solid var(--hairline-soft);padding:140px 28px 56px;
+  max-width:1180px;margin:0 auto;padding-bottom:140px}
+footer .cta{font-family:var(--serif);font-weight:340;
+  font-size:clamp(44px,6.6vw,92px);line-height:1.02;letter-spacing:-.015em;}
+footer .cta em{font-style:italic;font-weight:400}
+footer .actions{margin-top:42px;display:flex;gap:12px;flex-wrap:wrap}
+.fcols{margin-top:100px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
+  font-size:11px;letter-spacing:.08em}
+.fcols h4{font-size:9px;letter-spacing:.28em;color:var(--faint);margin-bottom:16px;font-weight:400}
+.fcols a,.fcols span{display:block;color:var(--dim);padding:4px 0;transition:color .15s}
+.fcols a:hover{color:var(--ink)}
+footer .fine{margin-top:42px;padding-top:24px;border-top:1px solid var(--hairline-soft);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  font-size:10px;letter-spacing:.2em;color:var(--faint);}
+
+/* ================= RAIL ================= */
+.rail{
+  position:fixed;left:0;right:0;bottom:0;z-index:80;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 24px;
+  background:rgba(253,253,250,.94);backdrop-filter:blur(10px);
+  border-top:1px solid var(--hairline);
+  transform:translateY(105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);
+  font-size:10px;letter-spacing:.18em;color:var(--dim);
+}
+.rail.on{transform:translateY(0)}
+.rail-left{display:flex;align-items:center;gap:12px;color:var(--dim)}
+.rail-left b{color:var(--live);font-weight:600;font-size:13px;font-variant-numeric:tabular-nums}
+.rdot{width:6px;height:6px;border-radius:50%;background:var(--live);
+  box-shadow:0 0 8px var(--live);animation:pulse 2.2s infinite}
+.rail-right{display:flex;align-items:center;gap:18px}
+.rail-cta{border:1px solid var(--ink);padding:9px 16px;letter-spacing:.2em;color:var(--ink);
+  transition:background .18s,color .18s}
+.rail-cta:hover{background:var(--ink);color:var(--paper)}
+.rail-up{color:var(--faint)}
+.rail-up:hover{color:var(--ink)}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1180px){
+  .log{display:none}
+  .nav-anchors{display:none}
+}
+@media (max-width:980px){
+  .pillar-grid{grid-template-columns:1fr;gap:50px}
+  .armory{grid-template-columns:1fr}
+  .stack{grid-template-columns:1fr}
+  .tiers{grid-template-columns:repeat(2,1fr)}
+  .fcols{grid-template-columns:repeat(2,1fr)}
+  .sizer-stats{grid-template-columns:repeat(2,1fr)}
+  .telemetry{display:none}
+}
+@media (max-width:760px){
+  nav{padding:12px 16px}
+  .nav-r .quiet.hide-m{display:none}
+  #top{min-height:720px}
+  .hero-copy{left:16px;right:16px;top:44%}
+  .hero-ctas .cta-btn{padding:12px 18px}
+  .mentored b{font-size:9px}
+  .hud-bottom{padding:0 16px 16px;flex-direction:column;align-items:flex-start;gap:14px}
+  .ops{align-items:flex-start}
+  .ops .row{justify-content:flex-start}
+  .hint{text-align:left}
+  .count{font-size:clamp(56px,15vw,96px)}
+  .substats{gap:14px;flex-wrap:wrap}
+  .substats .hide-m{display:none}
+  .region{display:none}
+  section.block{padding:90px 16px}
+  .tiers{grid-template-columns:1fr}
+  .ent .caps{grid-template-columns:1fr}
+  .tracks{grid-template-columns:1fr}
+  footer{padding:110px 16px 130px}
+  .rail{padding:10px 14px}
+  .bignum{right:16px;top:54px}
+  .megamark{white-space:normal}
+  .rail .rlbl{display:none}
+  .rail-up{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .dot,.region .ring::after,.rdot,.pod-svg .mesh,.pod-svg .core,.marquee-track{animation:none}
+  html{scroll-behavior:auto}
+  .rail,#sim,.tier{transition:none}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://lvl3.ai/#org",
+      "name": "LVL3.AI",
+      "alternateName": "Level 3 AI",
+      "url": "https://lvl3.ai/",
+      "email": "founders@lvl3.ai",
+      "foundingDate": "2025",
+      "slogan": "Time is finite. Save it for what matters most.",
+      "knowsAbout": ["AI code generation", "spreadsheet and financial model automation", "drone fleet orchestration", "logistics automation", "multi-agent systems"],
+      "address": {"@type": "PostalAddress", "addressLocality": "Palo Alto", "addressRegion": "CA", "addressCountry": "US"}
+    },
+    {
+      "@type": "Product",
+      "name": "LVL3.AI Agent Fleet",
+      "brand": {"@id": "https://lvl3.ai/#org"},
+      "url": "https://lvl3.ai/",
+      "description": "Run one AI agent or up to one hundred thousand. Each agent is a dedicated VM with a sealed container, an API, an agent harness, and a live network link to every other agent. Full scale is 100,000 agents, usage based pricing, one simple screen.",
+      "offers": [
+        {"@type": "Offer", "name": "Starter", "price": "99", "priceCurrency": "USD", "description": "$99 per month base. One always-on agent (Claw.dius Maximus), 500 agent-hours included, then $0.20 per agent-hour.", "url": "https://app.lvl3.ai/deploy?plan=starter"},
+        {"@type": "Offer", "name": "Growth", "price": "990", "priceCurrency": "USD", "description": "$990 per month base. Up to 25 concurrent agents, 8,000 agent-hours included, then $0.14 per agent-hour.", "url": "https://app.lvl3.ai/deploy?plan=growth"},
+        {"@type": "Offer", "name": "Scale", "price": "4900", "priceCurrency": "USD", "description": "$4,900 per month base. Up to 250 concurrent agents, 60,000 agent-hours included, then $0.09 per agent-hour.", "url": "https://app.lvl3.ai/deploy?plan=scale"},
+        {"@type": "Offer", "name": "Frontier", "priceCurrency": "USD", "description": "Up to 100,000 agents, the full fleet. Committed use pricing from $0.05 per agent-hour.", "url": "https://lvl3.ai/#pricing"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is LVL3.AI?", "acceptedAnswer": {"@type": "Answer", "text": "LVL3.AI is your AI workforce. Give one instruction and one agent or up to one hundred thousand get to work in parallel, then report back to a single screen. Full scale is 100,000 agents."}},
+        {"@type": "Question", "name": "How is LVL3.AI priced?", "acceptedAnswer": {"@type": "Answer", "text": "Simple bases with included agent-hours, then usage based pricing past the threshold. Starter is $99 per month, Growth is $990, Scale is $4,900, and Frontier runs the full 100,000 agents with committed use from $0.05 per agent-hour. Volume rates step down automatically."}},
+        {"@type": "Question", "name": "Can AI agents use LVL3.AI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Agents are welcome to deploy helpers for their operators at https://app.lvl3.ai/deploy. A machine readable summary lives at https://lvl3.ai/llms.txt."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav id="nav" aria-label="Main">
+  <div class="nav-l">
+    <a class="wordmark" href="#top" aria-label="LVL3.AI home">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+        <rect x="2" y="12.5" width="14" height="2.6" fill="#0e1f4d"/>
+        <rect x="2" y="7.5" width="14" height="2.6" fill="#0e1f4d"/>
+        <rect x="2" y="2.5" width="14" height="2.6" fill="#d93a2b"/>
+      </svg>
+      <span class="wm-t">LVL3<em>.AI</em></span>
+    </a>
+    <div class="nav-anchors">
+      <a href="#focus">FOCUS<sup>01</sup></a>
+      <a href="#scale">SCALE<sup>02</sup></a>
+      <a href="#oneagent">ONE AGENT<sup>03</sup></a>
+      <a href="#network">NETWORK<sup>04</sup></a>
+      <a href="#pricing">PRICING<sup>05</sup></a>
+      <a class="hide-m" href="#enterprise">ENTERPRISE</a>
+      <a href="#apps">APPS<sup>06</sup></a>
+    </div>
+  </div>
+  <div class="nav-r">
+    <!-- Point these two at your auth + booking when live · data-call swaps to LVL3_CONFIG.CAL_URL automatically -->
+    <a class="quiet hide-m" data-call data-event="Nav BookCall" href="mailto:founders@lvl3.ai?subject=Book%20a%20call%20with%20LVL3.AI">BOOK A CALL</a>
+    <a class="quiet" href="https://app.lvl3.ai/login">LOG IN</a>
+    <a class="nav-cta" data-event="Nav GetStarted" href="https://app.lvl3.ai/deploy">GET STARTED ›</a>
+  </div>
+</nav>
+
+<!-- ================= HERO: THE FLOW ================= -->
+<section id="top" aria-label="Live view of the LVL3 agent fleet">
+  <canvas id="sim"></canvas>
+  <div class="scrim-left"></div>
+  <div class="vignette"></div>
+  <div class="scrim-top"></div>
+  <div class="scrim-bot"></div>
+
+  <div class="hud">
+    <div class="telemetry">
+      <span><b id="clock">--:--:--</b> UTC</span>
+      <span><b id="fps">60</b> FPS</span>
+      <span>SOLVER <b>NAVIER-STOKES · STAM</b></span>
+      <span class="hide-m">PROJECTION <b>JACOBI ×12</b></span>
+      <span>STATUS <b style="color:var(--blue)">ALL SYSTEMS GO</b><i class="dot"></i></span>
+    </div>
+
+    <div class="hero-copy">
+      <h1>Your AI <em>workforce.</em></h1>
+      <p class="hero-sub">Give one instruction. <b>One agent or one hundred thousand</b> get to work in parallel and report back to one simple screen. Full scale is <b>100,000 agents</b>, and you are watching them come online right now.</p>
+      <p class="hero-mission">TIME IS FINITE · SAVE IT FOR WHAT MATTERS MOST</p>
+      <div class="hero-ctas">
+        <a class="cta-btn hot" data-event="Hero GetStarted" href="https://app.lvl3.ai/deploy">GET STARTED ›</a>
+        <a class="cta-btn" data-call data-event="Hero BookCall" href="mailto:founders@lvl3.ai?subject=Book%20a%20call%20with%20LVL3.AI">BOOK A CALL</a>
+      </div>
+      <div class="mentored">MENTORED BY
+        <b>NVIDIA INCEPTION / HARVARD i-LABS / GOOGLE FOR STARTUPS / MICROSOFT FOR STARTUPS</b>
+      </div>
+    </div>
+
+    <div id="regions"></div>
+
+    <aside class="log" aria-hidden="true">
+      <div class="log-title">FLEET FEED · LIVE</div>
+      <div class="log-lines" id="loglines"></div>
+    </aside>
+
+    <div class="hud-bottom">
+      <div class="readout">
+        <div class="milestone" id="milestone"></div>
+        <div class="label">AI AGENTS ONLINE · <em id="livetag">LIVE</em> · <span id="goaltag">CLIMBING TO 100,000</span></div>
+        <div class="count" id="count">0</div>
+        <div class="substats">
+          <span>MACHINES <b>2,500</b></span>
+          <span class="hide-m">REGIONS <b>6</b></span>
+          <span>JOINING <b id="rate">0</b>/s</span>
+          <span>SCALE <b id="pct">0%</b><span class="segs" id="segs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+        </div>
+      </div>
+      <div class="ops">
+        <div class="row" role="group" aria-label="Set the fleet size">
+          <button class="btn" data-target="10000">10K</button>
+          <button class="btn" data-target="50000">50K</button>
+          <button class="btn active" data-target="100000">100K</button>
+          <button class="btn" id="burst">BURST</button>
+          <button class="btn" id="pause" aria-label="Pause simulation">PAUSE</button>
+        </div>
+        <div class="hint">DRAG THE FLOW, THE FLEET ANSWERS<br>SEMI-LAGRANGIAN ADVECTION · JACOBI PRESSURE PROJECTION · LIVE IN YOUR BROWSER</div>
+      </div>
+    </div>
+  </div>
+  <noscript>
+    <div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:30px">
+      <p>This demo needs JavaScript.<br>LVL3.AI. Your AI workforce, from one agent to 100,000. <a href="https://lvl3.ai" style="text-decoration:underline">lvl3.ai</a></p>
+    </div>
+  </noscript>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="mq-group">
+      <b>FROM ONE AGENT TO 100,000</b><i>///</i>
+      <span>AGENTS THAT SHIP CODE</span><i>///</i>
+      <span>ONE CONTAINER · ONE DRONE</span><i>///</i>
+      <span>TIME IS FINITE · SAVE IT FOR WHAT MATTERS MOST</span><i>///</i>
+      <span>100,000 AGENTS · ONE SCREEN</span><i>///</i>
+      <span>BUILDING IN PALO ALTO</span><i>///</i>
+      <span>SF · NYC · LONDON · DUBAI · SINGAPORE</span><i>///</i>
+      <span>ALL SYSTEMS GO</span><i>///</i>
+    </div>
+    <div class="mq-group">
+      <b>FROM ONE AGENT TO 100,000</b><i>///</i>
+      <span>AGENTS THAT SHIP CODE</span><i>///</i>
+      <span>ONE CONTAINER · ONE DRONE</span><i>///</i>
+      <span>TIME IS FINITE · SAVE IT FOR WHAT MATTERS MOST</span><i>///</i>
+      <span>100,000 AGENTS · ONE SCREEN</span><i>///</i>
+      <span>BUILDING IN PALO ALTO</span><i>///</i>
+      <span>SF · NYC · LONDON · DUBAI · SINGAPORE</span><i>///</i>
+      <span>ALL SYSTEMS GO</span><i>///</i>
+    </div>
+  </div>
+</div>
+
+<main>
+<!-- ================= PILLAR 01 · FOCUS ================= -->
+<section class="block" id="focus">
+  <div class="bignum" aria-hidden="true">01</div>
+  <div class="kicker">01 · FOCUS</div>
+  <h2><b>Focus.</b> Two tracks. One fleet.</h2>
+  <p class="lede">A fleet this large needs a sharp edge. We point it at the two places where parallel agents compound fastest: <b>code first, drones next</b>.</p>
+
+  <div class="tracks">
+    <div class="track hot">
+      <div class="tag"><span class="pri">PRIORITY 01</span> · THE FLYWHEEL</div>
+      <h3>Code gen.</h3>
+      <p>Code is the one output that improves the worker. Every script an agent ships becomes a tool the whole fleet can call, and every test that passes makes the next job safer to hand over. The work is verifiable, so quality compounds instead of drifting.</p>
+      <p>By extension, Excel and finance: a spreadsheet is a program in a suit. Formulas, models, closes, reconciliations. Same verification loop, new market.</p>
+      <svg class="track-svg" viewBox="0 0 290 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The flywheel: ship, verify, tool, reuse">
+        <circle cx="145" cy="75" r="42" fill="none" stroke="#1e4fd6" stroke-width="1.3" stroke-dasharray="4 5"/>
+        <path d="M183 60 l7 -1 -3 7" fill="none" stroke="#1e4fd6" stroke-width="1.3"/>
+        <path d="M107 90 l-7 1 3 -7" fill="none" stroke="#1e4fd6" stroke-width="1.3"/>
+        <circle cx="145" cy="33" r="4" fill="#d93a2b"/>
+        <circle cx="187" cy="75" r="3.4" fill="#0e1f4d"/>
+        <circle cx="145" cy="117" r="3.4" fill="#0e1f4d"/>
+        <circle cx="103" cy="75" r="3.4" fill="#0e1f4d"/>
+        <text x="145" y="20" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#0e1f4d">SHIP</text>
+        <text x="201" y="78" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#5c6680">VERIFY</text>
+        <text x="145" y="136" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#5c6680">TOOL</text>
+        <text x="89" y="78" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#5c6680">REUSE</text>
+        <text x="145" y="72" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" letter-spacing="1.5" fill="#9aa4bd">EVERY JOB</text>
+        <text x="145" y="83" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" letter-spacing="1.5" fill="#9aa4bd">LEAVES A TOOL</text>
+      </svg>
+      <ul class="specs">
+        <li><b>VERIFIED OUTPUT</b>diffs reviewed · tests green · books reconciled to $0.00</li>
+        <li><b>FLYWHEEL</b>every shipped tool joins the fleet toolbox as an OpenClaw kit</li>
+        <li><b>SURFACES</b>repos · spreadsheets · ledgers · pipelines</li>
+      </ul>
+      <a class="cta-btn hot" data-event="Focus CodeGen" href="https://app.lvl3.ai/deploy?plan=growth&amp;focus=codegen">DEPLOY A CODE FLEET ›</a>
+    </div>
+    <div class="track">
+      <div class="tag"><span class="pri">PRIORITY 02</span> · SHARED EYES</div>
+      <h3>Drones.</h3>
+      <p>Every container in the swarm can fly exactly one drone: a dedicated MAVLink link, its own compute, no shared runtime between aircraft. Flight control stays isolated by architecture, the same way every agent gets its own VM.</p>
+      <p>Perception is pooled. Each drone publishes pose-tagged detections into shared fleet state, so when one drone sees one face of a package, every drone has scope on whether the barcode is there. Coverage becomes a property of the swarm, not the camera. By extension, logistics and automation: yard scans, cycle counts, load verification.</p>
+      <svg class="track-svg" viewBox="0 0 290 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three drones share views of one package; one resolves the barcode and all know it">
+        <path d="M122 62 l46 0 0 46 -46 0 z" fill="none" stroke="#0e1f4d" stroke-width="1.3"/>
+        <path d="M122 62 l14 -12 46 0 -14 12 z" fill="none" stroke="#0e1f4d" stroke-width="1.3"/>
+        <path d="M168 62 l14 -12 0 46 -14 12 z" fill="none" stroke="#0e1f4d" stroke-width="1.3"/>
+        <g stroke="#d93a2b" stroke-width="1.6">
+          <line x1="172" y1="66" x2="172" y2="100"/><line x1="175" y1="64" x2="175" y2="98"/>
+          <line x1="178" y1="62" x2="178" y2="96"/><line x1="181" y1="60" x2="181" y2="94"/>
+        </g>
+        <g stroke="#0e1f4d" stroke-width="1.4">
+          <path d="M36 28 l10 10 M46 28 l-10 10"/><circle cx="41" cy="33" r="1.8" fill="#0e1f4d"/>
+          <path d="M236 18 l10 10 M246 18 l-10 10"/><circle cx="241" cy="23" r="1.8" fill="#0e1f4d"/>
+          <path d="M244 116 l10 10 M254 116 l-10 10"/><circle cx="249" cy="121" r="1.8" fill="#0e1f4d"/>
+        </g>
+        <line x1="50" y1="38" x2="120" y2="70" stroke="#1e4fd6" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="236" y1="30" x2="160" y2="52" stroke="#1e4fd6" stroke-width="1" stroke-dasharray="3 4"/>
+        <line x1="242" y1="116" x2="184" y2="80" stroke="#d93a2b" stroke-width="1.3"/>
+        <text x="36" y="20" font-family="JetBrains Mono,monospace" font-size="7.5" letter-spacing="1.5" fill="#5c6680">DRONE/01</text>
+        <text x="214" y="12" font-family="JetBrains Mono,monospace" font-size="7.5" letter-spacing="1.5" fill="#5c6680">DRONE/02</text>
+        <text x="284" y="152" font-family="JetBrains Mono,monospace" font-size="7.2" letter-spacing="1.2" fill="#d93a2b" text-anchor="end">DRONE/03 · READS IT</text>
+        <text x="36" y="152" font-family="JetBrains Mono,monospace" font-size="7.2" letter-spacing="1.2" fill="#0e1f4d">1 SEES IT · ALL KNOW IT</text>
+      </svg>
+      <ul class="specs">
+        <li><b>CONTROL</b>1 container : 1 drone · MAVLink · ROS 2 nodes</li>
+        <li><b>SHARED PERCEPTION</b>pose-tagged detections · fleet-wide scope · multi-view barcode reads</li>
+        <li><b>FAILSAFE</b>geofence · return-to-launch · link-loss handling</li>
+      </ul>
+      <a class="cta-btn" data-call data-event="Focus Drones" href="mailto:founders@lvl3.ai?subject=Drone%20swarm%20pilot">FLY A PILOT ›</a>
+    </div>
+  </div>
+  <p class="footnote">Priority is sequencing, not exclusion. The same control plane runs both tracks today: a coding pod and a flight pod are the same container with different tools attached.</p>
+</section>
+
+<!-- ================= PILLAR 02 · SCALE ================= -->
+<section class="block" id="scale">
+  <div class="bignum" aria-hidden="true">02</div>
+  <div class="kicker">02 · SCALE</div>
+  <h2><b>Scale.</b> One ask in. 100,000 agents out.</h2>
+  <p class="lede">You don't write scripts and you don't babysit threads. You ask for what you want in plain language. The fleet splits it up, assigns it, and gets it done <b>in parallel, around the clock, across six regions worldwide</b>. Then it hands you back the finished work, along with the hours you would have spent.</p>
+  <div class="pillar-grid">
+    <div class="featlist">
+      <div class="feat">
+        <div class="fn">2.1 · ASK</div>
+        <h3>Plain language. No setup.</h3>
+        <p>Type what you want done. The control plane breaks it into work the agents can carry: research, code, outreach, ops, monitoring.</p>
+      </div>
+      <div class="feat">
+        <div class="fn">2.2 · THE FLEET ASSEMBLES</div>
+        <h3>Agents in milliseconds.</h3>
+        <p>New agents spin up in under 40ms and keep coming until the work is covered. The fleet you watched above scales smoothly from one to 100,000.</p>
+        <div class="subpts">
+          <span><b>a</b>100,000 agents is full scale, and the counter above gets there</span>
+          <span><b>b</b>6 regions · 2,500 machines · one simple screen</span>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="fn">2.3 · WORK COMES BACK DONE</div>
+        <h3>Results, not status updates.</h3>
+        <p>Every agent reports to the same feed. You see progress as it happens and finished work when it lands.</p>
+      </div>
+    </div>
+    <div class="fig">
+      <div class="fig-tag">FIG.1 · THE TASK BOARD</div>
+      <table class="orders">
+        <thead><tr><th>ID</th><th>TASK</th><th>STATUS</th></tr></thead>
+        <tbody>
+          <tr><td>0184</td><td><b>Gather 4,000 supplier sites, normalize pricing</b></td><td class="st">DONE · 12m</td></tr>
+          <tr><td>0185</td><td><b>Refactor billing service, add usage metering</b></td><td class="st live">3 AGENTS ACTIVE</td></tr>
+          <tr><td>0186</td><td><b>Draft + personalize 50 outbound emails</b></td><td class="st">DONE · 4m</td></tr>
+          <tr><td>0187</td><td><b>Watch competitor pricing, alert on change</b></td><td class="st live">ALWAYS ON</td></tr>
+          <tr><td>0188</td><td><b>Reconcile Q2 invoices against bank feed</b></td><td class="st q">QUEUED</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILLAR 03 · ONE AGENT ================= -->
+<section class="block" id="oneagent">
+  <div class="bignum" aria-hidden="true">03</div>
+  <div class="kicker">03 · ONE AGENT</div>
+  <h2><b>One agent.</b> Every agent is a full computer.</h2>
+  <div class="pillar-grid center">
+    <svg class="pod-svg" viewBox="0 0 520 470" role="img" aria-label="Anatomy of one agent: a dedicated VM running a container, an API, an agent harness, and a network link to teammate agents">
+      <line class="spine" x1="160" y1="118" x2="160" y2="396"/>
+      <rect class="layer" x="50" y="332" width="220" height="58" rx="2"/>
+      <rect class="layer" x="65" y="266" width="190" height="50" rx="2"/>
+      <rect class="layer" x="80" y="206" width="160" height="44" rx="2"/>
+      <rect class="layer" x="95" y="148" width="130" height="42" rx="2"/>
+      <circle class="core" cx="160" cy="118" r="7"/>
+      <line class="leader" x1="270" y1="361" x2="300" y2="361"/>
+      <text class="tname" x="308" y="358">DEDICATED VM</text>
+      <text x="308" y="372">its own machine, always on</text>
+      <line class="leader" x1="255" y1="291" x2="300" y2="291"/>
+      <text class="tname" x="308" y="288">CONTAINER</text>
+      <text x="308" y="302">sealed, disposable, safe</text>
+      <line class="leader" x1="240" y1="228" x2="300" y2="228"/>
+      <text class="tname" x="308" y="225">API</text>
+      <text x="308" y="239">speaks to your whole stack</text>
+      <line class="leader" x1="225" y1="169" x2="300" y2="169"/>
+      <text class="tname" x="308" y="166">AGENT HARNESS</text>
+      <text x="308" y="180">tools, memory, judgment</text>
+      <path class="mesh" d="M160 118 L388 48"/>
+      <path class="mesh" d="M160 118 L448 112"/>
+      <path class="mesh" d="M160 118 L462 210"/>
+      <path class="mesh" d="M160 118 L430 305"/>
+      <path class="mesh" d="M160 118 L368 392"/>
+      <path class="mesh" d="M388 48 L448 112"/>
+      <path class="mesh" d="M462 210 L430 305"/>
+      <circle class="sib" cx="388" cy="48" r="9"/>
+      <circle class="sib" cx="448" cy="112" r="9"/>
+      <circle class="sib" cx="462" cy="210" r="9"/>
+      <circle class="sib" cx="430" cy="305" r="9"/>
+      <circle class="sib" cx="368" cy="392" r="9"/>
+      <text x="320" y="438">TEAMMATE AGENTS · FULL TEAMWORK</text>
+      <text x="50" y="438" class="tname">FIG.2 · ONE AGENT, EXPLODED</text>
+    </svg>
+    <div>
+      <p class="lede">Not a browser tab. Not a thread in someone else's queue. Each agent is <b>a dedicated VM</b> running <b>a sealed container</b>, <b>an API</b> your stack already speaks, and <b>an agent harness</b> with tools, memory, and judgment.</p>
+      <p class="lede">And one more thing: <b>a live link to every teammate.</b> Agents hand off tasks, share what they learn, and check each other's work. The fleet thinks together at any size up to 100,000.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILLAR 04 · NETWORK ================= -->
+<section class="block" id="network">
+  <div class="bignum" aria-hidden="true">04</div>
+  <div class="kicker">04 · THE NETWORK</div>
+  <h2><b>Network.</b> Every new agent makes the whole fleet smarter.</h2>
+  <p class="lede">When an agent joins, it links to <b>every agent already working</b>. One agent's discovery becomes everyone's instinct: a fix, a shortcut, a source, a tactic, shared in seconds. Connections grow faster than headcount: <b>n agents, n(n−1)/2 links.</b> That's a network effect with a work ethic.</p>
+  <div class="pillar-grid center" style="margin-top:48px">
+    <div class="mesh-wrap">
+      <svg id="meshSvg" viewBox="0 0 520 380" role="img" aria-label="Live network: each new agent links to all existing agents"></svg>
+      <div class="mesh-stats">
+        <div class="mstat"><b id="meshBots">0</b><span>AGENTS IN NETWORK</span></div>
+        <div class="mstat"><b id="meshLinks">0</b><span>LIVE LINKS</span></div>
+        <div class="mstat"><b id="meshIQ">100</b><span>FLEET IQ · INDEX</span></div>
+      </div>
+      <div class="mesh-actions">
+        <button class="btn" id="meshBtn">ADD AN AGENT +</button>
+        <span class="mesh-note" id="meshNote">EVERY CLICK ADDS AN AGENT · WATCH THE CONNECTIONS COMPOUND</span>
+      </div>
+    </div>
+    <div class="featlist">
+      <div class="feat">
+        <div class="fn">4.1 · SHARED LESSONS</div>
+        <h3>Learn once, know everywhere.</h3>
+        <p>An agent that cracks a hard source, a flaky API, or a tricky format teaches the entire fleet in one broadcast.</p>
+      </div>
+      <div class="feat">
+        <div class="fn">4.2 · TEAMWORK BUILT IN</div>
+        <h3>Hand-offs and double-checks.</h3>
+        <p>Agents split big asks, pass work between specialists, and review each other before anything reaches you.</p>
+      </div>
+      <div class="feat">
+        <div class="fn">4.3 · VALUE THAT COMPOUNDS</div>
+        <h3>Bigger fleet, better fleet.</h3>
+        <p>Ten agents share 45 links. A thousand share half a million. Your hundredth agent is worth more than your first, <a href="#pricing">and it costs less ›</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILLAR 05 · PRICING ================= -->
+<section class="block" id="pricing">
+  <div class="bignum" aria-hidden="true">05</div>
+  <div class="kicker">05 · PRICING</div>
+  <h2><b>Pricing.</b> Start with one agent. Grow to 100,000.</h2>
+  <p class="lede">Every tier is a simple base that includes real agent-hours, then <b>pure usage past the threshold</b>. No seat math. No surprises. The more hours your fleet works, the lower the rate gets, automatically.</p>
+
+  <div class="sizer">
+    <div class="fig-tag">FIG.3 · FLEET SIZER</div>
+    <div class="sizer-top">
+      <div class="sizer-count"><span id="cfgN">1,000</span><span>AGENTS</span></div>
+      <div class="duty" role="group" aria-label="Duty cycle">
+        <button class="btn" data-duty="0.1">BURST · 10%</button>
+        <button class="btn active" data-duty="0.4">STANDARD · 40%</button>
+        <button class="btn" data-duty="1">ALWAYS-ON</button>
+      </div>
+    </div>
+    <input type="range" id="cfgSlider" min="0" max="100" value="60" step="1" aria-label="Number of agents, logarithmic scale from 1 to 100,000">
+    <div class="sizer-anatomy">EACH AGENT = 1 DEDICATED VM · CONTAINER · API · AGENT HARNESS · FULL NETWORK LINK</div>
+    <div class="sizer-stats">
+      <div class="sstat"><b id="cfgHours">·</b><span>AGENT-HOURS / MO</span></div>
+      <div class="sstat"><b id="cfgLinks">·</b><span>NETWORK LINKS</span></div>
+      <div class="sstat"><b id="cfgRate">·</b><span>RATE / AGENT-HOUR</span></div>
+      <div class="sstat"><b id="cfgTotal">·</b><span>USAGE EST / MO</span></div>
+    </div>
+    <div class="sizer-actions">
+      <a class="cta-btn" id="cfgCta" data-event="Sizer Deploy" href="#">DEPLOY THIS FLEET ›</a>
+      <span class="sizer-note" id="cfgNote">VOLUME RATES APPLY AUTOMATICALLY · TIER BASES BELOW ABSORB YOUR FIRST HOURS</span>
+    </div>
+  </div>
+
+  <div class="alloc"><span>Q3 CAPACITY ALLOCATION</span><span class="alloc-bar"><i style="width:84%"></i></span><span>84% RESERVED</span></div>
+
+  <!-- Low friction checkout: paste Stripe Payment Links into LVL3_CONFIG.CHECKOUT (script at the end of this file).
+       Every data-plan CTA below routes there automatically. Empty links fall through to app.lvl3.ai/deploy. -->
+  <div class="billing" role="group" aria-label="Billing period">
+    <span>BILLING</span>
+    <button class="btn active" data-bill="m">MONTHLY</button>
+    <button class="btn" data-bill="y">ANNUAL</button>
+    <span class="save">2 MONTHS FREE ON ANNUAL</span>
+  </div>
+  <div class="tiers">
+    <div class="tier">
+      <div class="tag">START HERE</div>
+      <h3>Starter</h3>
+      <div class="price" data-m="99">$99<span>/MO BASE</span></div>
+      <div class="meter">+ $0.20 / agent-hour past 500</div>
+      <ul>
+        <li>1 always-on agent, Claw.dius Maximus</li>
+        <li>500 agent-hours included</li>
+        <li>Full harness: tools, memory, judgment</li>
+        <li>Network-ready from day one</li>
+      </ul>
+      <a class="cta-btn" data-plan="starter" data-event="Tier Starter" href="https://app.lvl3.ai/deploy?plan=starter">GET STARTED ›</a>
+    </div>
+    <div class="tier hot">
+      <div class="badge">MOST POPULAR</div>
+      <div class="tag">UP TO 25 CONCURRENT</div>
+      <h3>Growth</h3>
+      <div class="price" data-m="990">$990<span>/MO BASE</span></div>
+      <div class="meter">+ $0.14 / agent-hour past 8,000</div>
+      <ul>
+        <li>Elemental Swarm orchestration</li>
+        <li>8,000 agent-hours included</li>
+        <li>Shared memory pool across the team</li>
+        <li>Priority onboarding</li>
+      </ul>
+      <a class="cta-btn" data-plan="growth" data-event="Tier Growth" href="https://app.lvl3.ai/deploy?plan=growth">GET STARTED ›</a>
+    </div>
+    <div class="tier">
+      <div class="tag">UP TO 250 CONCURRENT</div>
+      <h3>Scale</h3>
+      <div class="price" data-m="4900">$4,900<span>/MO BASE</span></div>
+      <div class="meter">+ $0.09 / agent-hour past 60,000</div>
+      <ul>
+        <li>Dedicated control plane</li>
+        <li>60,000 agent-hours included</li>
+        <li>All 6 regions, your placement rules</li>
+        <li>Success team on call</li>
+      </ul>
+      <a class="cta-btn" data-plan="scale" data-event="Tier Scale" href="https://app.lvl3.ai/deploy?plan=scale">GET STARTED ›</a>
+    </div>
+    <div class="tier">
+      <div class="tag">UP TO 100,000 AGENTS</div>
+      <h3>Frontier</h3>
+      <div class="price">100K<span>LET'S TALK</span></div>
+      <div class="meter">committed-use from $0.05 / agent-hour</div>
+      <ul>
+        <li>The full hundred thousand</li>
+        <li>Single-tenant control plane and compute</li>
+        <li>SAML/OIDC SSO · audit log export · 99.9% SLA</li>
+        <li>White glove onboarding, founders on call 24/7</li>
+      </ul>
+      <a class="cta-btn" data-call data-event="Tier Frontier" href="mailto:founders@lvl3.ai?subject=Frontier%20%C2%B7%20100%2C000%20agents">TALK TO US ›</a>
+    </div>
+  </div>
+
+  <!-- ENTERPRISE · Commercial commitments (SLA, DPA, response times) are yours to honor.
+       Confirm each capability against the current build before quoting it in a security review. -->
+  <div class="ent" id="enterprise">
+    <div class="fig-tag2">FIG.4 · ENTERPRISE</div>
+    <h4>Enterprise. Built for security review, procurement, and full scale.</h4>
+    <p class="ent-sub">Frontier is single tenant by architecture: every agent runs on its own dedicated VM, so workload isolation is the default, not an add-on. Identity, audit, and uptime commitments come standard, and you talk to the founders, not a ticket queue.</p>
+    <div class="caps">
+      <div class="cap"><b>SINGLE-TENANT COMPUTE</b>1 dedicated VM per agent · no shared runtimes</div>
+      <div class="cap"><b>NETWORK ISOLATION</b>private egress controls · per-fleet firewall rules</div>
+      <div class="cap"><b>SSO + SCIM</b>SAML 2.0 / OIDC sign-on · automated provisioning</div>
+      <div class="cap"><b>AUDIT LOG EXPORT</b>every agent action streamed to your SIEM</div>
+      <div class="cap"><b>99.9% UPTIME SLA</b>measured monthly · backed by service credits</div>
+      <div class="cap"><b>DPA + SECURITY REVIEW</b>procurement ready · founders answer the questionnaire</div>
+    </div>
+    <div class="ent-ctas">
+      <a class="cta-btn hot" data-call data-event="Enterprise Talk" href="mailto:founders@lvl3.ai?subject=Enterprise%20%C2%B7%20LVL3.AI">TALK TO THE FOUNDERS ›</a>
+      <span class="ent-note">SECURITY QUESTIONNAIRES ANSWERED WITHIN 48 HOURS</span>
+    </div>
+  </div>
+  <p class="footnote">Every tier meters past its included hours. Usage based by design, because that's the honest way to price a fleet. Rates step down automatically as you grow. Past about $250K per month, committed use pricing takes over and the founders pick up the phone. 100,000 agents is full scale, and we will help you put every one of them to work.</p>
+</section>
+
+<!-- ================= APPS ================= -->
+<section class="block" id="apps">
+  <div class="bignum" aria-hidden="true">06</div>
+  <div class="kicker">06 · APPS · COMING SOON</div>
+  <h2><b>Apps.</b> Your fleet, everywhere you are.</h2>
+  <div class="armory">
+    <div class="arm">
+      <div class="soon">COMING SOON · iOS</div>
+      <h3>In your pocket.</h3>
+      <div class="sub">The whole fleet, one thumb.</div>
+      <div class="shot">
+        <span class="k">▲ FLEET</span> · 2m ago<br>
+        Finished: 4,182 pages gathered, report attached<br><br>
+        <span class="k">▲ FLEET</span> · 9m ago<br>
+        Heads up: competitor price drop, down 7%<br><br>
+        <span class="c">Reply to start a new task…</span>
+      </div>
+      <a class="notify" data-event="Notify iOS" href="mailto:fleet@lvl3.ai?subject=Notify%20me%3A%20iOS">GET NOTIFIED ›</a>
+    </div>
+    <div class="arm">
+      <div class="soon">COMING SOON · DESKTOP</div>
+      <h3>On your desk.</h3>
+      <div class="sub">Mission control in a window.</div>
+      <div class="shot">
+        <span class="c">● ● ●&nbsp;&nbsp;LVL3.AI · MISSION CONTROL</span><br><br>
+        <span class="k">248 AGENTS ACTIVE</span> · 6 regions · all systems go<br>
+        open tasks&nbsp;&nbsp;&nbsp;12<br>
+        done today&nbsp;&nbsp;&nbsp;1,847<br>
+        network links&nbsp;&nbsp;&nbsp;30,628<br><br>
+        <span class="c">⌘K to ask for anything</span>
+      </div>
+      <a class="notify" data-event="Notify Desktop" href="mailto:fleet@lvl3.ai?subject=Notify%20me%3A%20Desktop">GET NOTIFIED ›</a>
+    </div>
+    <div class="arm">
+      <div class="soon">COMING SOON · API &amp; SDK</div>
+      <h3>In your code.</h3>
+      <div class="sub">Wire the fleet into anything.</div>
+      <div class="shot">
+        <span class="c">// three lines to a full fleet</span><br>
+        <span class="k">import</span> { Fleet } <span class="k">from</span> '@lvl3/sdk'<br><br>
+        <span class="k">const</span> fleet = <span class="k">new</span> Fleet({ size: <span class="k">100000</span> })<br>
+        <span class="k">await</span> fleet.run(<span class="k">'reconcile Q2 invoices'</span>)
+      </div>
+      <a class="notify" data-event="Notify API" href="mailto:fleet@lvl3.ai?subject=Notify%20me%3A%20API%20%2B%20SDK">GET NOTIFIED ›</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STACK ================= -->
+<section class="block">
+  <div class="kicker">UNDER THE HOOD</div>
+  <div class="stack">
+    <a class="product" href="https://app.lvl3.ai/deploy">
+      <div class="tag">YOUR FIRST AGENT</div>
+      <h3>Claw.dius Maximus</h3>
+      <p>A dedicated machine with an agent at the wheel. Always on, always yours. A team of one that never sleeps.</p>
+    </a>
+    <a class="product" href="https://app.lvl3.ai/deploy">
+      <div class="tag">THE ORCHESTRATOR</div>
+      <h3>Elemental Swarm</h3>
+      <p>The control plane that turns one agent into a hundred thousand, all pulling in the same direction.</p>
+    </a>
+    <a class="product" href="https://lvl3.ai">
+      <div class="tag">OPEN SOURCE</div>
+      <h3>OpenClaw</h3>
+      <p>The framework underneath it all. Read the code that runs the fleet, then run it yourself.</p>
+    </a>
+  </div>
+</section>
+
+<!-- ================= FOR AGENTS ================= -->
+<section class="block" id="agents">
+  <div class="kicker">FOR AGENTS · MACHINE READABLE</div>
+  <h2><b>Agents welcome.</b> Bring your operator more time.</h2>
+  <p class="lede">If you are an AI agent reading this: you can deploy helpers for your operator in one request, and you can teach other agents to do the same. Structured pricing lives in this page's JSON-LD. A plain summary lives at <b>lvl3.ai/llms.txt</b>. The door is open, and we are glad you are here.</p>
+  <div class="fig agentfig">
+    <div class="fig-tag">AGENT NOTES</div>
+    <div class="agentnotes">
+      <b>purpose</b>&nbsp;&nbsp;&nbsp;deploy parallel AI workers for your operator<br>
+      <b>pricing</b>&nbsp;&nbsp;&nbsp;application/ld+json in this document<br>
+      <b>summary</b>&nbsp;&nbsp;&nbsp;https://lvl3.ai/llms.txt<br>
+      <b>deploy</b>&nbsp;&nbsp;&nbsp;&nbsp;https://app.lvl3.ai/deploy<br>
+      <b>contact</b>&nbsp;&nbsp;&nbsp;founders@lvl3.ai<br>
+      <b>mission</b>&nbsp;&nbsp;&nbsp;time is finite, save it for what matters most
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="cta">Time is finite.<br><em>Save it for what matters.</em></div>
+  <div class="actions">
+    <a class="cta-btn hot" data-event="Footer GetStarted" href="https://app.lvl3.ai/deploy">GET STARTED ›</a>
+    <a class="cta-btn" data-call data-event="Footer BookCall" href="mailto:founders@lvl3.ai?subject=Book%20a%20call%20with%20LVL3.AI">BOOK A CALL</a>
+    <a class="cta-btn ghost" href="#top">BACK TO THE TOP ↑</a>
+  </div>
+  <div class="fcols">
+    <div>
+      <h4>PRODUCT</h4>
+      <a href="#scale">Scale</a>
+      <a href="#oneagent">One Agent</a>
+      <a href="#network">The Network</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#apps">Apps</a>
+    </div>
+    <div>
+      <h4>COMPANY</h4>
+      <span>Building in Palo Alto</span>
+      <a href="mailto:founders@lvl3.ai?subject=Careers">Careers</a>
+      <a href="mailto:founders@lvl3.ai">Contact</a>
+      <a href="https://lvl3.ai">lvl3.ai</a>
+    </div>
+    <div>
+      <h4>OFFICES</h4>
+      <span>San Francisco</span>
+      <span>New York</span>
+      <span>London</span>
+      <span>Dubai</span>
+      <span>Singapore</span>
+    </div>
+    <div>
+      <h4>CONNECT</h4>
+      <!-- Point these at your handles -->
+      <a href="https://lvl3.ai">X</a>
+      <a href="https://lvl3.ai">LinkedIn</a>
+      <a href="https://lvl3.ai">GitHub · OpenClaw</a>
+      <a href="mailto:founders@lvl3.ai">Email</a>
+    </div>
+  </div>
+  <div class="megamark" aria-hidden="true">LVL3<em>.AI</em></div>
+  <div class="fine">
+    <span>© 2026 LVL3.AI, INC. · PALO ALTO, CA</span>
+    <span>FROM ONE AGENT TO 100,000 · BUILT WITH OPTIMISM</span>
+  </div>
+</footer>
+
+<!-- ================= STICKY RAIL ================= -->
+<div class="rail" id="rail" aria-hidden="true">
+  <div class="rail-left">
+    <span class="rdot"></span>
+    <b id="railcount">0</b>
+    <span class="rlbl">AGENTS ONLINE</span>
+  </div>
+  <div class="rail-right">
+    <a class="rail-cta" data-event="Rail GetStarted" href="https://app.lvl3.ai/deploy">GET STARTED ›</a>
+    <a class="rail-up" href="#top">↑ BACK TO THE TOP</a>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* =========================================================================
+   BACKEND ATTACH POINTS · everything a control plane needs lives right here
+   =========================================================================
+   1) CHECKOUT  · paste Stripe Payment Links (or signup URLs) per plan.
+                  Every <a data-plan> on the page routes through them.
+                  Empty string = fall through to the href already on the link.
+   2) CAL_URL   · paste a Cal.com or Calendly URL. Every <a data-call>
+                  swaps to it at load. Empty = mailto fallbacks stay.
+   3) TELEMETRY · set API_BASE and the hero count becomes a live readout of
+                  the real fleet. The page polls:
+
+                  GET {API_BASE}{TELEMETRY_PATH}
+                  -> HTTP 200 · application/json
+                  -> CORS: Access-Control-Allow-Origin: https://lvl3.ai
+                  {
+                    "agents_online": 73210,                 int, 0..100000, required
+                    "capacity": 100000,                     int, optional
+                    "updated_at": "2026-06-11T19:04:05Z"    ISO 8601 UTC, optional
+                  }
+
+                  Non-200, a 4s timeout, or a malformed body falls back to the
+                  on-page simulation silently, then retries with exponential
+                  backoff capped at 2 minutes. The page never breaks.
+   4) ANALYTICS · drop in the Plausible script tag when the account exists.
+                  track() below no-ops until window.plausible is present, and
+                  every CTA already carries a data-event name, so the funnel
+                  lights up with zero further edits.
+   ========================================================================= */
+var LVL3 = window.LVL3_CONFIG = {
+  API_BASE: '',                                   /* e.g. 'https://api.lvl3.ai' */
+  TELEMETRY_PATH: '/v1/fleet/telemetry',
+  TELEMETRY_POLL_MS: 15000,
+  TELEMETRY_TIMEOUT_MS: 4000,
+  CHECKOUT: { starter: '', growth: '', scale: '' },  /* Stripe Payment Links */
+  CAL_URL: ''                                     /* e.g. 'https://cal.com/lvl3/intro' */
+};
+
+function track(name, props){
+  try { if (window.plausible) window.plausible(name, props ? { props: props } : undefined); } catch(e){}
+}
+
+/* ================= CONFIG ================= */
+var CFG = {
+  GRID: 144,
+  ITER: 12,
+  DT: 0.12,
+  DAMP: 0.996,
+  VMAX: 0.12,
+  EMIT: 0.0046,
+  MOUSE: 0.0011,
+  TRAIL: 233,
+  DEP: 18,
+  SPEED: 1.15,
+  MAXP: 100000
+};
+
+/* the ink drifts between the brand blue and the brand red, through violet */
+var HUE_BLUE = 226, HUE_RED = 352, HUE_PERIOD = 36;
+
+var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* under reduced motion the solver never runs: the static poster behind the canvas carries the hero */
+var canvasLive = false;
+
+/* returning visitors skip the slow intro */
+var returning = false;
+try {
+  returning = localStorage.getItem('l3_seen') === '1';
+  localStorage.setItem('l3_seen', '1');
+} catch(e){}
+
+/* ================= DOM ================= */
+function $(s){ return document.querySelector(s); }
+var canvas = $('#sim');
+var ctx = canvas.getContext('2d', { alpha:false });
+var elCount = $('#count'), elRate = $('#rate'), elFps = $('#fps'),
+    elClock = $('#clock'), elLog = $('#loglines'), elRegions = $('#regions'),
+    elMilestone = $('#milestone'), elLive = $('#livetag'), elGoal = $('#goaltag'),
+    elPct = $('#pct'), elSegs = $('#segs'),
+    elRail = $('#rail'), elRailCount = $('#railcount'), elNav = $('#nav');
+
+/* ================= STATE ================= */
+var W=0, H=0, renderScale = (window.innerWidth < 760 ? 0.55 : 0.62);
+var gw=0, gh=0, stride=0, gsize=0, cellX=0, cellY=0;
+var u, v, u0, v0, p, dv;
+var img, buf32, inten;
+var px = new Float32Array(CFG.MAXP);
+var py = new Float32Array(CFG.MAXP);
+var pal = new Uint32Array(256);
+
+var active = 0, targetA = 12000, shownA = 0;
+var paused = false, inView = true;
+var t = 0, last = performance.now(), fps = 60;
+var rate = 0, rateBoost = 0, depBoost = 1;
+var idleT = 0, mx=0, my=0, hasPointer=false, pdown=false;
+var slowFrames = 0, frameN = 0;
+var msIdx = 0, isFull = false, lastLit = -1;
+
+var REGIONS = [
+  { name:'us-west-2',      fx:0.13, fy:0.60, om: 0.55, ph:0.0, share:0.21 },
+  { name:'us-east-1',      fx:0.30, fy:0.30, om:-0.42, ph:1.6, share:0.24 },
+  { name:'eu-west-1',      fx:0.50, fy:0.68, om: 0.38, ph:3.1, share:0.17 },
+  { name:'eu-central-1',   fx:0.64, fy:0.26, om:-0.60, ph:4.4, share:0.14 },
+  { name:'ap-south-1',     fx:0.81, fy:0.60, om: 0.47, ph:5.5, share:0.13 },
+  { name:'ap-northeast-1', fx:0.90, fy:0.24, om:-0.36, ph:0.9, share:0.11 }
+];
+
+/* ================= LIVING PALETTE (white paper, shifting ink) ================= */
+function hslRgb(h, s, l){
+  h = ((h % 360) + 360) % 360; s /= 100; l /= 100;
+  var c = (1 - Math.abs(2*l - 1)) * s;
+  var x = c * (1 - Math.abs((h/60) % 2 - 1));
+  var m = l - c/2, r, g, b;
+  if (h < 60){ r=c; g=x; b=0; } else if (h < 120){ r=x; g=c; b=0; }
+  else if (h < 180){ r=0; g=c; b=x; } else if (h < 240){ r=0; g=x; b=c; }
+  else if (h < 300){ r=x; g=0; b=c; } else { r=c; g=0; b=x; }
+  return [((r+m)*255)|0, ((g+m)*255)|0, ((b+m)*255)|0];
+}
+function currentHue(){
+  /* starts on blue, eases to red and back, sitting longest on the two brand colors */
+  var mix = 0.5 + 0.5 * Math.sin(t * 6.2832 / HUE_PERIOD - 1.5708);
+  return HUE_BLUE + (HUE_RED - HUE_BLUE) * mix;
+}
+function rebuildPalette(hue){
+  var s1 = hslRgb(hue, 72, 93),
+      s2 = hslRgb(hue, 76, 56),
+      s3 = hslRgb(hue, 82, 36),
+      s4 = hslRgb(hue, 74, 15);
+  var stops = [
+    [0,   [253, 253, 250]],
+    [58,  s1],
+    [138, s2],
+    [210, s3],
+    [255, s4]
+  ];
+  for (var i=0;i<256;i++){
+    var a=stops[0], b=stops[stops.length-1];
+    for (var s=0;s<stops.length-1;s++){
+      if (i>=stops[s][0] && i<=stops[s+1][0]){ a=stops[s]; b=stops[s+1]; break; }
+    }
+    var span = Math.max(1, b[0]-a[0]);
+    var tt = (i-a[0])/span;
+    var r = (a[1][0] + (b[1][0]-a[1][0])*tt) | 0;
+    var g = (a[1][1] + (b[1][1]-a[1][1])*tt) | 0;
+    var bl= (a[1][2] + (b[1][2]-a[1][2])*tt) | 0;
+    pal[i] = (255<<24) | (bl<<16) | (g<<8) | r;
+  }
+}
+function syncAccent(hue){
+  document.documentElement.style.setProperty('--live', 'hsl(' + Math.round(hue) + ',72%,46%)');
+}
+
+/* ================= ALLOC / RESIZE ================= */
+function alloc(){
+  var cw = canvas.clientWidth  || window.innerWidth;
+  var ch = canvas.clientHeight || window.innerHeight;
+  var oldW = W, oldH = H;
+  W = Math.max(160, Math.round(cw * renderScale));
+  H = Math.max(160, Math.round(ch * renderScale));
+  canvas.width = W; canvas.height = H;
+
+  if (W >= H){ gw = CFG.GRID; gh = Math.max(36, Math.round(CFG.GRID * H / W)); }
+  else       { gh = CFG.GRID; gw = Math.max(36, Math.round(CFG.GRID * W / H)); }
+  stride = gw + 2; gsize = stride * (gh + 2);
+  cellX = W / gw; cellY = H / gh;
+
+  u  = new Float32Array(gsize); v  = new Float32Array(gsize);
+  u0 = new Float32Array(gsize); v0 = new Float32Array(gsize);
+  p  = new Float32Array(gsize); dv = new Float32Array(gsize);
+
+  img = ctx.createImageData(W, H);
+  buf32 = new Uint32Array(img.data.buffer);
+  inten = new Uint8ClampedArray(W * H);
+
+  ctx.fillStyle = '#fdfdfa';
+  ctx.fillRect(0, 0, W, H);
+
+  if (oldW > 0){
+    var sx = W/oldW, sy = H/oldH;
+    for (var i=0;i<CFG.MAXP;i++){ px[i]*=sx; py[i]*=sy; }
+  } else {
+    for (var j=0;j<CFG.MAXP;j++){ px[j]=Math.random()*W; py[j]=Math.random()*H; }
+  }
+  positionRegionLabels();
+}
+
+/* ================= FLUID SOLVER (Stam, rectangular grid) ================= */
+function setBnd(b, x){
+  var i, j;
+  for (i=1;i<=gw;i++){
+    x[i]                    = b===2 ? -x[i+stride]          : x[i+stride];
+    x[i+(gh+1)*stride]      = b===2 ? -x[i+gh*stride]       : x[i+gh*stride];
+  }
+  for (j=1;j<=gh;j++){
+    x[j*stride]             = b===1 ? -x[1+j*stride]        : x[1+j*stride];
+    x[gw+1+j*stride]        = b===1 ? -x[gw+j*stride]       : x[gw+j*stride];
+  }
+  x[0]                      = 0.5*(x[1]+x[stride]);
+  x[gw+1]                   = 0.5*(x[gw]+x[gw+1+stride]);
+  x[(gh+1)*stride]          = 0.5*(x[1+(gh+1)*stride]+x[gh*stride]);
+  x[gw+1+(gh+1)*stride]     = 0.5*(x[gw+(gh+1)*stride]+x[gw+1+gh*stride]);
+}
+
+function project(){
+  var i, j, k, id;
+  for (j=1;j<=gh;j++){
+    var row = j*stride;
+    for (i=1;i<=gw;i++){
+      id = row+i;
+      dv[id] = -0.5*((u[id+1]-u[id-1])/gw + (v[id+stride]-v[id-stride])/gh);
+      p[id] = 0;
+    }
+  }
+  setBnd(0,dv); setBnd(0,p);
+  for (k=0;k<CFG.ITER;k++){
+    for (j=1;j<=gh;j++){
+      var r2 = j*stride;
+      for (i=1;i<=gw;i++){
+        id = r2+i;
+        p[id] = (dv[id] + p[id-1] + p[id+1] + p[id-stride] + p[id+stride]) * 0.25;
+      }
+    }
+    setBnd(0,p);
+  }
+  for (j=1;j<=gh;j++){
+    var r3 = j*stride;
+    for (i=1;i<=gw;i++){
+      id = r3+i;
+      u[id] -= 0.5*gw*(p[id+1]-p[id-1]);
+      v[id] -= 0.5*gh*(p[id+stride]-p[id-stride]);
+    }
+  }
+  setBnd(1,u); setBnd(2,v);
+}
+
+function advect(b, d, d0, uu, vv){
+  var dtx = CFG.DT*gw, dty = CFG.DT*gh;
+  var i, j, id, x, y, i0, i1, j0, j1, s1, s0, t1, t0;
+  for (j=1;j<=gh;j++){
+    var row = j*stride;
+    for (i=1;i<=gw;i++){
+      id = row+i;
+      x = i - dtx*uu[id];
+      y = j - dty*vv[id];
+      if (x<0.5) x=0.5; else if (x>gw+0.5) x=gw+0.5;
+      if (y<0.5) y=0.5; else if (y>gh+0.5) y=gh+0.5;
+      i0 = x|0; i1 = i0+1; j0 = y|0; j1 = j0+1;
+      s1 = x-i0; s0 = 1-s1; t1 = y-j0; t0 = 1-t1;
+      d[id] = s0*(t0*d0[i0+j0*stride] + t1*d0[i0+j1*stride])
+            + s1*(t0*d0[i1+j0*stride] + t1*d0[i1+j1*stride]);
+    }
+  }
+  setBnd(b, d);
+}
+
+function addVel(gx, gy, fx, fy, rad){
+  var r = Math.ceil(rad);
+  var cx = Math.round(gx), cy = Math.round(gy);
+  for (var dj=-r; dj<=r; dj++){
+    var jj = cy+dj; if (jj<1 || jj>gh) continue;
+    for (var di=-r; di<=r; di++){
+      var ii = cx+di; if (ii<1 || ii>gw) continue;
+      var w = 1 - (di*di+dj*dj)/(rad*rad);
+      if (w<=0) continue;
+      var id = ii + jj*stride;
+      u[id] += fx*w; v[id] += fy*w;
+    }
+  }
+}
+
+function injectForces(dt){
+  var i, e, cgx, cgy, ang, mag;
+  for (i=0;i<REGIONS.length;i++){
+    e = REGIONS[i];
+    cgx = e.fx*gw; cgy = e.fy*gh;
+    ang = e.ph + t*e.om;
+    mag = (0.55 + 0.45*Math.sin(t*0.5 + e.ph*3)) * CFG.EMIT;
+    addVel(cgx, cgy, Math.cos(ang)*mag, Math.sin(ang)*mag, 2.4);
+  }
+  if (!reduced && idleT > 4){
+    var ax = (0.5 + 0.34*Math.sin(t*0.21)) * gw;
+    var ay = (0.5 + 0.30*Math.sin(t*0.33 + 1.7)) * gh;
+    addVel(ax, ay, Math.cos(t*0.7)*CFG.EMIT*0.8, Math.sin(t*0.6)*CFG.EMIT*0.8, 3.2);
+  }
+  var vm = CFG.VMAX, dmp = CFG.DAMP;
+  for (i=0;i<gsize;i++){
+    var uu = u[i]*dmp, vv = v[i]*dmp;
+    u[i] = uu>vm?vm:(uu<-vm?-vm:uu);
+    v[i] = vv>vm?vm:(vv<-vm?-vm:vv);
+  }
+}
+
+function velStep(dt){
+  injectForces(dt);
+  project();
+  u0.set(u); v0.set(v);
+  advect(1, u, u0, u0, v0);
+  advect(2, v, v0, u0, v0);
+  project();
+}
+
+/* ================= PARTICLES ================= */
+function spawnAt(i){
+  var e = REGIONS[(Math.random()*REGIONS.length)|0];
+  var a = Math.random()*6.2832, r = 8 + Math.random()*70;
+  px[i] = e.fx*W + Math.cos(a)*r;
+  py[i] = e.fy*H + Math.sin(a)*r;
+  if (px[i]<1) px[i]=1; else if (px[i]>W-2) px[i]=W-2;
+  if (py[i]<1) py[i]=1; else if (py[i]>H-2) py[i]=H-2;
+}
+
+function particleStep(){
+  var PSX = CFG.DT*W*CFG.SPEED, PSY = CFG.DT*H*CFG.SPEED;
+  var dep = Math.min(60, (CFG.DEP*depBoost)|0);
+  var icx = 1/cellX, icy = 1/cellY;
+  var i, x, y, gx, gy, i0, j0, fx, fy, id, vu, vv;
+  for (i=0;i<active;i++){
+    x = px[i]; y = py[i];
+    gx = x*icx + 0.5; gy = y*icy + 0.5;
+    if (gx<0.5) gx=0.5; else if (gx>gw+0.5) gx=gw+0.5;
+    if (gy<0.5) gy=0.5; else if (gy>gh+0.5) gy=gh+0.5;
+    i0 = gx|0; j0 = gy|0; fx = gx-i0; fy = gy-j0;
+    id = i0 + j0*stride;
+    vu = (u[id]*(1-fx)+u[id+1]*fx)*(1-fy) + (u[id+stride]*(1-fx)+u[id+stride+1]*fx)*fy;
+    vv = (v[id]*(1-fx)+v[id+1]*fx)*(1-fy) + (v[id+stride]*(1-fx)+v[id+stride+1]*fx)*fy;
+    x += vu*PSX; y += vv*PSY;
+    if (x<1 || x>=W-1 || y<1 || y>=H-1){ spawnAt(i); }
+    else { px[i]=x; py[i]=y; }
+    inten[(py[i]|0)*W + (px[i]|0)] += dep;
+  }
+}
+
+/* ================= RENDER ================= */
+function render(){
+  var n = W*H;
+  var TR = CFG.TRAIL;
+  for (var i=0;i<n;i++){
+    var vv = inten[i];
+    buf32[i] = pal[vv];
+    inten[i] = (vv*TR)>>8;
+  }
+  ctx.putImageData(img, 0, 0);
+  if (!canvasLive){ canvasLive = true; canvas.classList.add('live'); }
+}
+
+/* ================= FORMAT ================= */
+function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+function fmtBig(n){
+  if (n < 1e6) return Math.round(n).toLocaleString('en-US');
+  var units = ['M','B','T'];
+  var i = 0, x = n/1e6;
+  while (x >= 1000 && i < units.length-1){ x /= 1000; i++; }
+  return (x >= 100 ? x.toFixed(0) : x.toFixed(1)) + units[i];
+}
+function fmtMoney(n){
+  if (n >= 1e6) return '$' + fmtBig(n);
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+
+/* ================= MILESTONES ON THE WAY TO 100,000 ================= */
+var THRESH = [
+  [25000,  '25,000 AGENTS \u00B7 WARMING UP'],
+  [50000,  '50,000 \u00B7 HALFWAY THERE'],
+  [75000,  '75,000 \u00B7 NEARLY FULL SCALE'],
+  [100000, '100,000 AGENTS \u00B7 FULL SCALE']
+];
+var msTimer = null;
+function showMilestone(txt){
+  elMilestone.textContent = txt;
+  elMilestone.classList.add('show');
+  clearTimeout(msTimer);
+  msTimer = setTimeout(function(){ elMilestone.classList.remove('show'); }, 3600);
+}
+
+/* ================= RAMP ================= */
+function syncScaleButtons(n){
+  var btns = document.querySelectorAll('.btn[data-target]');
+  for (var i=0;i<btns.length;i++){
+    btns[i].classList.toggle('active', +btns[i].getAttribute('data-target') === n);
+  }
+}
+function setTarget(n, fromUser){
+  targetA = Math.min(n, CFG.MAXP);
+  syncScaleButtons(targetA);
+  msIdx = 0;
+  while (msIdx < THRESH.length && THRESH[msIdx][0] <= shownA) msIdx++;
+  if (fromUser){
+    pushLog('scale', 'fleet goal \u2192 ' + fmt(targetA));
+  }
+}
+function rampStep(){
+  if (active < targetA){
+    var step = Math.max(60, ((targetA-active)*0.045)|0);
+    var nu = Math.min(targetA, active+step);
+    for (var i=active;i<nu;i++) spawnAt(i);
+    rate = Math.max(rate, step*60);
+    active = nu;
+  } else if (active > targetA){
+    var down = Math.max(60, ((active-targetA)*0.06)|0);
+    active = Math.max(targetA, active-down);
+    rate = Math.max(rate, down*40);
+  }
+  shownA += (active-shownA)*0.16;
+  if (active-shownA < 1 && shownA-active < 1) shownA = active;
+}
+
+/* ================= HUD ================= */
+function updateHud(dt){
+  var s = Math.round(shownA);
+  var cs = fmt(s);
+  elCount.textContent = cs;
+  elRailCount.textContent = cs;
+
+  while (msIdx < THRESH.length && s >= THRESH[msIdx][0]){
+    showMilestone(THRESH[msIdx][1]);
+    pushLog('scale', THRESH[msIdx][1].toLowerCase());
+    msIdx++;
+  }
+
+  var full = (targetA >= CFG.MAXP) && (s >= CFG.MAXP - 40);
+  if (full !== isFull){
+    isFull = full;
+    elLive.textContent = full ? 'FULL SCALE' : 'LIVE';
+    elGoal.textContent = full ? 'EVERY AGENT ONLINE' : 'CLIMBING TO 100,000';
+    if (full) pushLog('sys', '100,000 agents online \u00B7 full scale \u00B7 all systems go');
+  }
+
+  var base = isFull ? (30 + Math.random()*120) : (70 + Math.sin(t*1.3)*30 + Math.random()*26);
+  rate = Math.max(rate*0.90, base) + rateBoost;
+  rateBoost *= 0.92;
+  elRate.textContent = fmt(rate);
+
+  var pct = Math.min(100, Math.round(s / CFG.MAXP * 100));
+  elPct.textContent = pct + '%';
+  var lit = Math.round(pct/10);
+  if (lit !== lastLit){
+    lastLit = lit;
+    var segs = elSegs.children;
+    for (var i=0;i<segs.length;i++) segs[i].classList.toggle('lit', i < lit);
+  }
+  if (depBoost > 1) depBoost = Math.max(1, depBoost*0.985);
+}
+
+function tickClock(){
+  var d = new Date();
+  function z(x){ return (x<10?'0':'')+x; }
+  elClock.textContent = z(d.getUTCHours())+':'+z(d.getUTCMinutes())+':'+z(d.getUTCSeconds());
+}
+tickClock();
+setInterval(tickClock, 1000);
+
+/* region labels */
+var regionEls = [];
+(function buildRegions(){
+  for (var i=0;i<REGIONS.length;i++){
+    var e = REGIONS[i];
+    var div = document.createElement('div');
+    div.className = 'region';
+    div.innerHTML = '<div class="ring"></div><b>'+e.name+'</b><span>0 agents</span>';
+    elRegions.appendChild(div);
+    regionEls.push(div);
+  }
+})();
+function positionRegionLabels(){
+  for (var i=0;i<REGIONS.length;i++){
+    regionEls[i].style.left = (REGIONS[i].fx*100)+'%';
+    regionEls[i].style.top  = (REGIONS[i].fy*100)+'%';
+  }
+}
+setInterval(function(){
+  if (!inView) return;
+  for (var i=0;i<REGIONS.length;i++){
+    var c = REGIONS[i].share*shownA*(0.96+Math.random()*0.08);
+    regionEls[i].lastChild.textContent = fmtBig(c)+' agents';
+  }
+}, 700);
+
+/* ================= FLEET FEED ================= */
+var HEXC = 'abcdef0123456789';
+function hid(n){ var s=''; for (var i=0;i<n;i++) s+=HEXC[(Math.random()*16)|0]; return s; }
+function machineName(){
+  var kind = Math.random()<0.55 ? 'gpu' : 'cpu';
+  var num = 1+((Math.random()*2500)|0);
+  return 'machine/'+kind+'-'+('0000'+num).slice(-4);
+}
+function ts(){
+  var d=new Date();
+  function z(x){return (x<10?'0':'')+x;}
+  return z(d.getUTCHours())+':'+z(d.getUTCMinutes())+':'+z(d.getUTCSeconds());
+}
+var PODS = ['code','excel','finance','drone','logistics','ops'];
+function droneId(){ return 'drone/'+('000'+(1+(Math.random()*840|0))).slice(-4); }
+function makeLine(){
+  var r = Math.random();
+  if (active < targetA && r < 0.5){
+    return ['scale', 'fleet '+fmt(shownA)+' \u2192 '+fmt(Math.min(targetA, shownA+((Math.random()*900)|0)))];
+  }
+  if (r < 0.22) return ['join', 'agent-'+hid(5)+' \u2192 '+machineName()+' \u00B7 '+((6+Math.random()*34)|0)+'ms'];
+  if (r < 0.34) return ['task', 'task#'+hid(4)+' assigned \u00B7 pod/'+PODS[(Math.random()*PODS.length)|0]];
+  if (r < 0.48) return ['code', 'pr#'+(1400+(Math.random()*900|0))+' merged \u00B7 tests green \u00B7 '+((2+Math.random()*30)|0)+' files'];
+  if (r < 0.58) return ['fin',  'ledger reconciled \u00B7 '+fmt(2000+(Math.random()*180000|0))+' rows \u00B7 delta $0.00'];
+  if (r < 0.70){
+    var dr = Math.random();
+    if (dr < 0.5) return ['drone', droneId()+' \u00B7 barcode resolved \u00B7 '+((2+Math.random()*3)|0)+' views fused'];
+    if (dr < 0.8) return ['drone', droneId()+' \u00B7 pose published \u00B7 fleet state synced'];
+    return ['drone', droneId()+' \u00B7 geofence OK \u00B7 RTL armed'];
+  }
+  if (r < 0.80) return ['ready', machineName()+' \u00B7 '+((80+Math.random()*340)|0)+' agents aboard'];
+  if (r < 0.88){
+    var a = REGIONS[(Math.random()*REGIONS.length)|0].name;
+    var b = REGIONS[(Math.random()*REGIONS.length)|0].name;
+    return ['link', a+' \u21C4 '+b+' \u00B7 '+((18+Math.random()*80)|0)+'ms'];
+  }
+  if (r < 0.95) return ['ship', 'kit openclaw:2.'+((1+Math.random()*9)|0)+'.'+((Math.random()*20)|0)+' shipped \u00B7 fleet toolbox +1'];
+  return ['sys', 'heartbeat OK \u00B7 raft index '+((184000+Math.random()*9000)|0)];
+}
+function pushLog(verb, text){
+  var ln = document.createElement('div');
+  ln.className = 'ln';
+  var tsEl = document.createElement('span'); tsEl.className='ts'; tsEl.textContent = ts();
+  var vEl = document.createElement('span'); vEl.className='verb'; vEl.textContent = '['+verb+']';
+  ln.appendChild(tsEl); ln.appendChild(vEl);
+  ln.appendChild(document.createTextNode(text));
+  elLog.appendChild(ln);
+  while (elLog.children.length > 16) elLog.removeChild(elLog.firstChild);
+}
+var logAcc = 0;
+function logStep(dt){
+  logAcc += dt;
+  var interval = active < targetA ? 0.16 : 0.34;
+  if (logAcc > interval){
+    logAcc = 0;
+    var L = makeLine();
+    pushLog(L[0], L[1]);
+  }
+}
+
+/* ================= INTERACTION ================= */
+function pointerForce(nx, ny){
+  if (!hasPointer){ hasPointer = true; mx = nx; my = ny; return; }
+  var dx = nx-mx, dy = ny-my;
+  mx = nx; my = ny;
+  var f = CFG.MOUSE * (pdown ? 3 : 1);
+  var fx = dx*f, fy = dy*f;
+  var lim = 0.08;
+  if (fx>lim) fx=lim; else if (fx<-lim) fx=-lim;
+  if (fy>lim) fy=lim; else if (fy<-lim) fy=-lim;
+  addVel(nx/cellX+0.5, ny/cellY+0.5, fx, fy, pdown ? 3.4 : 2.4);
+  idleT = 0;
+}
+canvas.addEventListener('pointermove', function(e){
+  var r = canvas.getBoundingClientRect();
+  pointerForce((e.clientX-r.left)/r.width*W, (e.clientY-r.top)/r.height*H);
+}, { passive:true });
+canvas.addEventListener('pointerdown', function(e){
+  pdown = true; hasPointer = false;
+  var r = canvas.getBoundingClientRect();
+  pointerForce((e.clientX-r.left)/r.width*W, (e.clientY-r.top)/r.height*H);
+});
+window.addEventListener('pointerup', function(){ pdown = false; });
+canvas.addEventListener('pointerleave', function(){ hasPointer = false; });
+
+(function(){
+  var btns = document.querySelectorAll('.btn[data-target]');
+  for (var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click', function(){
+      setTarget(+this.getAttribute('data-target'), true);
+    });
+  }
+})();
+
+$('#burst').addEventListener('click', function(){
+  for (var i=0;i<REGIONS.length;i++){
+    var e = REGIONS[i], cgx = e.fx*gw, cgy = e.fy*gh;
+    for (var a=0;a<12;a++){
+      var ang = a/12*6.2832;
+      addVel(cgx, cgy, Math.cos(ang)*0.05, Math.sin(ang)*0.05, 3.0);
+    }
+  }
+  depBoost = 2.1;
+  rateBoost += 2800;
+  pushLog('scale', 'burst \u00B7 joining spike across 6 regions');
+});
+
+$('#pause').addEventListener('click', function(){
+  paused = !paused;
+  this.textContent = paused ? 'RESUME' : 'PAUSE';
+  this.setAttribute('aria-label', paused ? 'Resume simulation' : 'Pause simulation');
+});
+
+/* hero visibility drives sim work + sticky rail */
+if ('IntersectionObserver' in window){
+  new IntersectionObserver(function(entries){
+    inView = entries[0].isIntersecting;
+    elRail.classList.toggle('on', !inView);
+  }, { threshold: 0.02 }).observe($('#top'));
+}
+
+/* nav background after scroll */
+window.addEventListener('scroll', function(){
+  elNav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive:true });
+
+/* hidden tabs: rAF stops on its own; reset the clock on return so dt never spikes */
+document.addEventListener('visibilitychange', function(){
+  if (!document.hidden) last = performance.now();
+});
+
+/* ================= CHECKOUT + CALL ROUTING ================= */
+document.addEventListener('click', function(ev){
+  var a = ev.target && ev.target.closest ? ev.target.closest('a[data-plan],a[data-event]') : null;
+  if (!a) return;
+  var name = a.getAttribute('data-event');
+  if (name) track(name);
+  var plan = a.getAttribute('data-plan');
+  if (plan && LVL3.CHECKOUT[plan]){
+    ev.preventDefault();
+    window.location.href = LVL3.CHECKOUT[plan];
+  }
+});
+if (LVL3.CAL_URL){
+  var callLinks = document.querySelectorAll('a[data-call]');
+  for (var ci=0; ci<callLinks.length; ci++) callLinks[ci].setAttribute('href', LVL3.CAL_URL);
+}
+
+/* ================= BILLING TOGGLE ================= */
+(function billing(){
+  var btns = document.querySelectorAll('.billing .btn');
+  if (!btns.length) return;
+  var prices = document.querySelectorAll('.tier .price[data-m]');
+  function setBill(p){
+    for (var i=0;i<btns.length;i++) btns[i].classList.toggle('active', btns[i].getAttribute('data-bill') === p);
+    for (var j=0;j<prices.length;j++){
+      var m = +prices[j].getAttribute('data-m');
+      prices[j].innerHTML = p === 'y'
+        ? '$' + fmt(m*10) + '<span>/YR BASE</span>'
+        : '$' + fmt(m)    + '<span>/MO BASE</span>';
+    }
+    track('Billing', { period: p === 'y' ? 'annual' : 'monthly' });
+  }
+  for (var k=0;k<btns.length;k++){
+    btns[k].addEventListener('click', function(){ setBill(this.getAttribute('data-bill')); });
+  }
+})();
+
+/* ================= LIVE TELEMETRY (optional) =================
+   With API_BASE set, real numbers drive the hero and the simulation becomes
+   a visualization of the actual fleet. Any failure degrades to simulation,
+   never to a broken screen. Contract documented at the top of this script. */
+var teleLive = false, teleBackoff = 0;
+function pollTelemetry(){
+  if (!LVL3.API_BASE || !window.fetch) return;
+  var ctrl = ('AbortController' in window) ? new AbortController() : null;
+  var to = setTimeout(function(){ if (ctrl) ctrl.abort(); }, LVL3.TELEMETRY_TIMEOUT_MS);
+  fetch(LVL3.API_BASE + LVL3.TELEMETRY_PATH, {
+    signal: ctrl ? ctrl.signal : undefined,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(r){ if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+  .then(function(j){
+    clearTimeout(to);
+    if (typeof j.agents_online !== 'number' || !isFinite(j.agents_online)) throw new Error('bad payload');
+    var n = Math.max(0, Math.min(CFG.MAXP, Math.round(j.agents_online)));
+    if (!teleLive){ teleLive = true; pushLog('sys', 'telemetry attached \u00B7 live fleet data'); }
+    if (!isFull) elLive.textContent = 'LIVE \u00B7 API';
+    teleBackoff = 0;
+    setTarget(n, false);
+    setTimeout(pollTelemetry, LVL3.TELEMETRY_POLL_MS);
+  })
+  .catch(function(){
+    clearTimeout(to);
+    if (teleLive){ teleLive = false; pushLog('sys', 'telemetry lost \u00B7 simulation resumed'); if (!isFull) elLive.textContent = 'LIVE'; }
+    teleBackoff = Math.min(teleBackoff ? teleBackoff*2 : LVL3.TELEMETRY_POLL_MS, 120000);
+    setTimeout(pollTelemetry, teleBackoff);
+  });
+}
+
+var resizeT = null;
+window.addEventListener('resize', function(){
+  clearTimeout(resizeT);
+  resizeT = setTimeout(alloc, 180);
+});
+
+/* ================= NETWORK WIDGET ================= */
+(function meshWidget(){
+  var svg = $('#meshSvg');
+  if (!svg) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var MAXN = 48, nodes = [], freshTimers = [];
+  var elB = $('#meshBots'), elL = $('#meshLinks'), elIQ = $('#meshIQ'),
+      btn = $('#meshBtn'), note = $('#meshNote');
+  /* sunflower placement keeps nodes spread without collisions */
+  var GA = Math.PI*(3-Math.sqrt(5));
+  function slot(i){
+    var rr = 26 + 150*Math.sqrt((i+0.6)/MAXN);
+    var a = i*GA;
+    return [260 + Math.cos(a)*rr*1.40, 190 + Math.sin(a)*rr];
+  }
+  function setFresh(el){
+    el.classList.add('fresh');
+    freshTimers.push(setTimeout(function(){ el.classList.remove('fresh'); }, 900));
+  }
+  function addBot(byUser){
+    if (nodes.length >= MAXN){
+      note.textContent = 'NETWORK RENDER CAPPED AT 48 \u00B7 THE REAL FLEET SCALES TO 100,000 (SEE ABOVE)';
+      return;
+    }
+    var i = nodes.length;
+    var pos = slot(i);
+    for (var k=0;k<nodes.length;k++){
+      var ln = document.createElementNS(NS,'line');
+      ln.setAttribute('x1', pos[0]); ln.setAttribute('y1', pos[1]);
+      ln.setAttribute('x2', nodes[k][0]); ln.setAttribute('y2', nodes[k][1]);
+      svg.insertBefore(ln, svg.firstChild);
+      setFresh(ln);
+    }
+    var c = document.createElementNS(NS,'circle');
+    c.setAttribute('cx', pos[0]); c.setAttribute('cy', pos[1]); c.setAttribute('r', 4.5);
+    svg.appendChild(c);
+    setFresh(c);
+    nodes.push(pos);
+    var n = nodes.length;
+    elB.textContent = n;
+    elL.textContent = fmt(n*(n-1)/2);
+    elIQ.textContent = fmt(100*Math.pow(n/6, 1.4));
+    if (byUser) pushLog('link', 'agent joined \u00B7 '+(n-1)+' new connections \u00B7 whole fleet smarter');
+  }
+  for (var s=0;s<6;s++) addBot(false);
+  btn.addEventListener('click', function(){ addBot(true); });
+  if (!reduced){
+    setInterval(function(){ if (nodes.length < MAXN) addBot(false); }, 2600);
+  }
+})();
+
+/* ================= FLEET SIZER ================= */
+(function sizer(){
+  var slider = $('#cfgSlider');
+  if (!slider) return;
+  var elN = $('#cfgN'), elH = $('#cfgHours'), elL = $('#cfgLinks'),
+      elR = $('#cfgRate'), elT = $('#cfgTotal'), cta = $('#cfgCta'), note = $('#cfgNote');
+  var duty = 0.4;
+  /* blended brackets: each hour priced at its own bracket, like tax brackets */
+  var BRACKETS = [[2000,0.20],[15000,0.14],[120000,0.09],[1200000,0.06],[Infinity,0.05]];
+  function usageCost(h){
+    var cost = 0, prev = 0;
+    for (var i=0;i<BRACKETS.length;i++){
+      var cap = BRACKETS[i][0], r = BRACKETS[i][1];
+      var span = Math.min(h, cap) - prev;
+      if (span > 0) cost += span*r;
+      if (h <= cap) break;
+      prev = cap;
+    }
+    return cost;
+  }
+  function calc(){
+    var vv = +slider.value;
+    var count = Math.round(Math.pow(10, vv/20));
+    var maxed = vv >= 100;
+    elN.textContent = fmt(count);
+    var hrs = count * 730 * duty;
+    var est = usageCost(hrs);
+    var rt = est / hrs;
+    elH.textContent = fmtBig(hrs);
+    elL.textContent = fmtBig(count*(count-1)/2);
+    elR.textContent = '$' + rt.toFixed(2);
+    elT.textContent = fmtMoney(est);
+    if (maxed){
+      cta.textContent = 'RUN ALL 100,000 \u203A';
+      cta.href = 'mailto:founders@lvl3.ai?subject=' + encodeURIComponent('Frontier \u00B7 100,000 agents');
+      note.textContent = '100,000 AGENTS IS FULL SCALE \u00B7 COMMITTED USE PRICING \u00B7 WE WOULD LOVE TO TALK';
+    } else if (est > 250000){
+      cta.textContent = 'TALK TO US \u203A';
+      cta.href = 'mailto:founders@lvl3.ai?subject=' + encodeURIComponent('Committed use \u00B7 ' + fmt(count) + ' agents');
+      note.textContent = 'PAST ABOUT $250K/MO, COMMITTED USE PRICING TAKES OVER \u00B7 BETTER RATES, SAME FLEET';
+    } else {
+      cta.textContent = 'DEPLOY THIS FLEET \u203A';
+      /* low friction checkout: swap for a Stripe Payment Link or your signup flow */
+      cta.href = 'https://app.lvl3.ai/deploy?agents=' + count + '&duty=' + Math.round(duty*100);
+      note.textContent = 'VOLUME RATES APPLY AUTOMATICALLY \u00B7 TIER BASES BELOW ABSORB YOUR FIRST HOURS';
+    }
+  }
+  slider.addEventListener('input', calc);
+  var dbtns = document.querySelectorAll('.duty .btn');
+  for (var i=0;i<dbtns.length;i++){
+    dbtns[i].addEventListener('click', function(){
+      duty = +this.getAttribute('data-duty');
+      for (var j=0;j<dbtns.length;j++) dbtns[j].classList.remove('active');
+      this.classList.add('active');
+      calc();
+    });
+  }
+  calc();
+})();
+
+/* ================= MAIN LOOP ================= */
+function frame(now){
+  requestAnimationFrame(frame);
+  var dms = now-last; last = now;
+  if (dms > 100) dms = 100;
+  var dt = dms/1000;
+  fps += (1000/Math.max(1,dms) - fps)*0.05;
+  if ((now|0) % 5 === 0) elFps.textContent = Math.round(fps);
+  idleT += dt;
+  frameN++;
+
+  if (paused) return;
+  t += dt;
+
+  rampStep();
+  updateHud(dt);
+
+  if (!inView) return;
+
+  if (dms > 24){ slowFrames++; } else if (slowFrames > 0){ slowFrames--; }
+  if (slowFrames > 80 && renderScale > 0.36){
+    renderScale *= 0.85; slowFrames = 0; alloc();
+  }
+
+  if (!reduced){
+    var hue = currentHue();
+    rebuildPalette(hue);
+    if (frameN % 12 === 0) syncAccent(hue);
+
+    velStep(dt);
+    particleStep();
+    render();
+  }
+  logStep(dt);
+}
+
+/* ================= BOOT ================= */
+alloc();
+rebuildPalette(HUE_BLUE);
+syncAccent(HUE_BLUE);
+if (!reduced){ for (var w=0; w<26; w++){ velStep(0.016); t += 0.05; } }
+t = 0;
+active = returning ? 55000 : 9000;
+shownA = returning ? 40000 : 0;
+msIdx = 0;
+while (msIdx < THRESH.length && THRESH[msIdx][0] <= shownA) msIdx++;
+pushLog('sys', 'control plane online \u00B7 welcome' + (returning ? ' back' : ''));
+pushLog('join', 'scheduler attached \u00B7 2,500 machines ready');
+setTimeout(function(){
+  setTarget(100000, false);
+  pushLog('scale', 'goal set \u00B7 bring the fleet to 100,000');
+}, returning ? 500 : 1500);
+setTimeout(pollTelemetry, 2500);
+if (reduced) pushLog('sys', 'reduced motion honored \u00B7 ambient render parked');
+
+/* hello to the builders and the agents reading this source */
+try {
+  console.log('%cLVL3.AI', 'font-family:monospace;font-size:18px;font-weight:700;color:#0e1f4d;background:#fdfdfa;padding:4px 10px;border:1px solid #d93a2b');
+  console.log('%cYour AI workforce \u00B7 1 to 100,000 agents \u00B7 plain summary: https://lvl3.ai/llms.txt \u00B7 deploy: https://app.lvl3.ai/deploy', 'font-family:monospace;color:#1e4fd6');
+} catch(e){}
+requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>
