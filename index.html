@@ -43,8 +43,8 @@
   --panel:#0d1019;
   --panel2:#11151f;
   --ink:#e9ecf5;
-  --dim:#9aa3bc;
-  --faint:#5e6883;
+  --dim:#b3bbd0;
+  --faint:#7f89a6;
   --blue:#5481ff;
   --blue-soft:rgba(84,129,255,.55);
   --red:#ff5546;
@@ -114,6 +114,7 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
 #sim{
   position:absolute;inset:0;width:100%;height:100%;display:block;
   touch-action:pan-y;cursor:crosshair;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
   opacity:0;transition:opacity .9s ease;
 }
 #sim.live{opacity:1}
@@ -124,10 +125,12 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
 .scrim-bot{position:absolute;bottom:0;left:0;right:0;height:240px;pointer-events:none;
   background:linear-gradient(to top, rgba(8,10,16,.86), transparent);}
 .scrim-left{position:absolute;top:0;bottom:0;left:0;width:58%;pointer-events:none;
-  background:linear-gradient(to right, rgba(8,10,16,.66), transparent);}
+  background:linear-gradient(to right, rgba(8,10,16,.8), transparent);}
 
 .hud{position:absolute;inset:0;pointer-events:none}
-.hud .hero-copy,.hud .hud-bottom,.hud .log,.hud .telemetry{z-index:3}
+.hud .hero-copy,.hud .hud-bottom,.hud .log,.hud .telemetry{z-index:3;
+  text-shadow:0 1px 16px rgba(8,10,16,.92),0 0 3px rgba(8,10,16,.7)}
+.region b,.region span{text-shadow:0 1px 10px rgba(8,10,16,.92)}
 #regions{position:absolute;inset:0;z-index:1}
 
 .telemetry{
@@ -154,7 +157,7 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
 .hero-copy h1 em{font-style:italic;font-weight:400}
 .hero-sub{
   margin-top:22px;color:var(--dim);
-  font-size:13px;line-height:1.9;max-width:50ch;
+  font-size:14.5px;line-height:1.9;max-width:52ch;
 }
 .hero-sub b{color:var(--ink);font-weight:500}
 .hero-ctas{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
@@ -193,7 +196,7 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
 .log-lines{height:264px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
   -webkit-mask-image:linear-gradient(to bottom, transparent, #000 36%);
   mask-image:linear-gradient(to bottom, transparent, #000 36%);}
-.log-lines .ln{color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log-lines .ln{color:var(--dim);font-size:10.5px;line-height:2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .log-lines .ln .ts{color:var(--faint);margin-right:10px}
 .log-lines .ln .verb{color:var(--blue-soft);margin-right:8px}
 
@@ -211,7 +214,7 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
   white-space:nowrap;
 }
 .milestone.show{opacity:1;transform:none}
-.readout .label{font-size:10px;letter-spacing:.26em;color:var(--dim);margin-bottom:5px;}
+.readout .label{font-size:11px;letter-spacing:.26em;color:var(--dim);margin-bottom:6px;}
 .readout .label em{font-style:normal;color:var(--live)}
 .count{
   font-family:var(--serif);font-weight:560;
@@ -221,7 +224,7 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
   text-shadow:0 2px 50px rgba(8,10,16,.86);
 }
 .substats{display:flex;gap:22px;margin-top:14px;
-  font-size:10.5px;letter-spacing:.12em;color:var(--dim);}
+  font-size:11.5px;letter-spacing:.12em;color:var(--dim);}
 .substats b{color:var(--ink);font-weight:500}
 .segs{display:inline-flex;gap:2px;margin-left:8px;vertical-align:1px}
 .segs i{width:7px;height:8px;background:var(--hairline)}
@@ -239,7 +242,7 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
 .btn:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
 .btn.active{border-color:var(--blue);color:var(--blue)}
 .btn.active:hover{background:var(--ink);color:var(--paper)}
-.hint{font-size:9.5px;letter-spacing:.2em;color:var(--faint);text-align:right;line-height:2}
+.hint{font-size:10.5px;letter-spacing:.18em;color:var(--dim);text-align:right;line-height:2}
 
 /* ================= MARQUEE ================= */
 .marquee{
@@ -255,7 +258,7 @@ nav.scrolled{background:rgba(8,10,16,.86);backdrop-filter:blur(10px);border-bott
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* statement details */
-.hero-mission{margin-top:16px;font-size:10px;letter-spacing:.3em;color:var(--blue-soft)}
+.hero-mission{margin-top:16px;font-size:10.5px;letter-spacing:.3em;color:var(--live)}
 .agentfig{margin-top:48px;max-width:680px}
 .agentnotes{font-size:11.5px;line-height:2.15;color:var(--dim);overflow-wrap:anywhere}
 .agentnotes b{color:var(--ink);font-weight:500}
@@ -285,7 +288,7 @@ section.block{
   position:relative;
 }
 section.block:first-of-type{border-top:none}
-.kicker{font-size:10.5px;letter-spacing:.3em;color:var(--blue);margin-bottom:32px;}
+.kicker{font-size:11px;letter-spacing:.3em;color:var(--blue);margin-bottom:32px;}
 .kicker::before{content:'// ';color:var(--faint)}
 h2{
   font-family:var(--serif);font-weight:340;
@@ -294,7 +297,7 @@ h2{
   max-width:18ch;
 }
 h2 b{font-weight:560}
-.lede{max-width:62ch;color:var(--dim);font-size:13.5px;line-height:1.95;margin-top:30px;}
+.lede{max-width:62ch;color:var(--dim);font-size:15px;line-height:1.95;margin-top:30px;}
 .lede + .lede{margin-top:18px}
 .lede b{color:var(--ink);font-weight:500}
 .lede a{color:var(--blue)}
@@ -400,13 +403,13 @@ input[type=range]:focus-visible{outline:1px solid var(--blue);outline-offset:4px
 .tier.hot{outline:1px solid var(--blue);outline-offset:-1px}
 .tier .badge{position:absolute;top:-9px;right:14px;background:var(--paper);padding:0 9px;
   font-size:8.5px;letter-spacing:.24em;color:var(--red)}
-.tier .tag{font-size:9.5px;letter-spacing:.24em;color:var(--faint);margin-bottom:16px}
+.tier .tag{font-size:10px;letter-spacing:.22em;color:var(--faint);margin-bottom:16px}
 .tier h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:14px}
 .tier .price{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1}
 .tier .price span{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.14em;margin-left:6px}
 .tier .meter{margin-top:9px;font-size:10px;color:var(--blue);letter-spacing:.1em}
 .tier ul{list-style:none;margin:20px 0 26px;display:flex;flex-direction:column;gap:9px;
-  font-size:11px;color:var(--dim);line-height:1.7}
+  font-size:12px;color:var(--dim);line-height:1.75}
 .tier li::before{content:'\00B7  ';color:var(--faint)}
 .tier .cta-btn{margin-top:auto;text-align:center;padding:12px 14px;font-size:10px}
 .tracks{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hairline-soft);
@@ -414,14 +417,14 @@ input[type=range]:focus-visible{outline:1px solid var(--blue);outline-offset:4px
 .track{background:var(--paper);padding:36px 30px 34px;display:flex;flex-direction:column;position:relative;transition:background .25s}
 .track:hover{background:var(--panel)}
 .track.hot{outline:1px solid var(--blue);outline-offset:-1px}
-.track .tag{font-size:9.5px;letter-spacing:.24em;color:var(--faint);margin-bottom:14px}
+.track .tag{font-size:10px;letter-spacing:.22em;color:var(--faint);margin-bottom:14px}
 .track .tag .pri{color:var(--red)}
 .track h3{font-family:var(--serif);font-weight:400;font-size:26px;margin-bottom:12px}
-.track p{font-size:12px;color:var(--dim);line-height:1.85;max-width:58ch}
+.track p{font-size:13.5px;color:var(--dim);line-height:1.9;max-width:58ch}
 .track p+p{margin-top:10px}
 .track-svg{display:block;margin:20px 0 4px;max-width:290px;width:100%;height:auto}
 .specs{list-style:none;margin:16px 0 26px;display:flex;flex-direction:column;gap:8px;
-  font-size:9.5px;letter-spacing:.12em;color:var(--dim);line-height:1.8}
+  font-size:10.5px;letter-spacing:.1em;color:var(--dim);line-height:1.85}
 .specs b{color:var(--ink);font-weight:500;letter-spacing:.18em;margin-right:8px}
 .specs li::before{content:'\00B7  ';color:var(--faint)}
 .track .cta-btn{margin-top:auto;align-self:flex-start;padding:12px 18px;font-size:10px}
@@ -435,15 +438,15 @@ input[type=range]:focus-visible{outline:1px solid var(--blue);outline-offset:4px
 .ent .fig-tag2{position:absolute;top:-8px;left:18px;background:var(--panel);padding:0 9px;
   font-size:8.5px;letter-spacing:.26em;color:var(--faint)}
 .ent h4{font-family:var(--serif);font-weight:400;font-size:21px;margin-bottom:8px}
-.ent .ent-sub{font-size:11px;color:var(--dim);max-width:70ch;line-height:1.85}
+.ent .ent-sub{font-size:12.5px;color:var(--dim);max-width:70ch;line-height:1.9}
 .ent .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline-soft);
   border:1px solid var(--hairline-soft);margin:22px 0}
-.ent .cap{background:var(--paper);padding:14px 16px;font-size:9.5px;letter-spacing:.12em;color:var(--dim);line-height:1.8}
+.ent .cap{background:var(--paper);padding:15px 17px;font-size:10.5px;letter-spacing:.1em;color:var(--dim);line-height:1.85}
 .ent .cap b{display:block;color:var(--ink);font-weight:500;letter-spacing:.18em;margin-bottom:2px}
 .ent .ent-ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .ent .ent-note{font-size:9.5px;letter-spacing:.18em;color:var(--faint)}
 
-.footnote{margin-top:26px;font-size:10.5px;color:var(--faint);letter-spacing:.06em;line-height:1.9;max-width:74ch;}
+.footnote{margin-top:26px;font-size:11.5px;color:var(--dim);letter-spacing:.05em;line-height:1.9;max-width:74ch;}
 
 /* ================= APPS ================= */
 .armory{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline-soft);
@@ -465,7 +468,7 @@ input[type=range]:focus-visible{outline:1px solid var(--blue);outline-offset:4px
   border:1px solid var(--hairline-soft);margin-top:56px}
 .product{background:var(--paper);padding:38px 28px 42px;transition:background .25s}
 .product:hover{background:var(--panel)}
-.product .tag{font-size:9.5px;letter-spacing:.24em;color:var(--faint);margin-bottom:18px}
+.product .tag{font-size:10px;letter-spacing:.22em;color:var(--faint);margin-bottom:18px}
 .product h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-bottom:11px}
 .product p{color:var(--dim);font-size:12px;line-height:1.85}
 
@@ -683,7 +686,7 @@ footer .fine{margin-top:42px;padding-top:24px;border-top:1px solid var(--hairlin
           <button class="btn" id="burst">BURST</button>
           <button class="btn" id="pause" aria-label="Pause simulation">PAUSE</button>
         </div>
-        <div class="hint">DRAG THE FLOW, THE FLEET ANSWERS<br>SEMI-LAGRANGIAN ADVECTION · JACOBI PRESSURE PROJECTION · LIVE IN YOUR BROWSER</div>
+        <div class="hint">DRAG THE FLOW, THE FLEET ANSWERS<br>REAL FLUID, SOLVED LIVE IN YOUR BROWSER · SEMI-LAGRANGIAN + JACOBI ×12</div>
       </div>
     </div>
   </div>
@@ -735,19 +738,19 @@ footer .fine{margin-top:42px;padding-top:24px;border-top:1px solid var(--hairlin
       <p>Code is the one output that improves the worker. Every script an agent ships becomes a tool the whole fleet can call, and every test that passes makes the next job safer to hand over. The work is verifiable, so quality compounds instead of drifting.</p>
       <p>By extension, Excel and finance: a spreadsheet is a program in a suit. Formulas, models, closes, reconciliations. Same verification loop, new market.</p>
       <svg class="track-svg" viewBox="0 0 290 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The flywheel: ship, verify, tool, reuse">
-        <circle cx="145" cy="75" r="42" fill="none" stroke="#5481ff" stroke-width="1.3" stroke-dasharray="4 5"/>
-        <path d="M183 60 l7 -1 -3 7" fill="none" stroke="#5481ff" stroke-width="1.3"/>
-        <path d="M107 90 l-7 1 3 -7" fill="none" stroke="#5481ff" stroke-width="1.3"/>
-        <circle cx="145" cy="33" r="4" fill="#ff5546"/>
-        <circle cx="187" cy="75" r="3.4" fill="#e9ecf5"/>
-        <circle cx="145" cy="117" r="3.4" fill="#e9ecf5"/>
-        <circle cx="103" cy="75" r="3.4" fill="#e9ecf5"/>
-        <text x="145" y="20" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#e9ecf5">SHIP</text>
-        <text x="201" y="78" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#9aa3bc">VERIFY</text>
-        <text x="145" y="136" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#9aa3bc">TOOL</text>
-        <text x="89" y="78" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="8.5" letter-spacing="2" fill="#9aa3bc">REUSE</text>
-        <text x="145" y="72" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" letter-spacing="1.5" fill="#5e6883">EVERY JOB</text>
-        <text x="145" y="83" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" letter-spacing="1.5" fill="#5e6883">LEAVES A TOOL</text>
+        <circle cx="145" cy="75" r="42" fill="none" stroke="#5481ff" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <path d="M183 60 l7 -1 -3 7" fill="none" stroke="#5481ff" stroke-width="1.5"/>
+        <path d="M107 90 l-7 1 3 -7" fill="none" stroke="#5481ff" stroke-width="1.5"/>
+        <circle cx="145" cy="33" r="4.6" fill="#ff5546"/>
+        <circle cx="187" cy="75" r="3.9" fill="#e9ecf5"/>
+        <circle cx="145" cy="117" r="3.9" fill="#e9ecf5"/>
+        <circle cx="103" cy="75" r="3.9" fill="#e9ecf5"/>
+        <text x="145" y="20" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" fill="#e9ecf5">SHIP</text>
+        <text x="201" y="78" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" fill="#9aa3bc">VERIFY</text>
+        <text x="145" y="136" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" fill="#9aa3bc">TOOL</text>
+        <text x="89" y="78" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" fill="#9aa3bc">REUSE</text>
+        <text x="145" y="72" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.6" letter-spacing="1.5" fill="#5e6883">EVERY JOB</text>
+        <text x="145" y="83" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.6" letter-spacing="1.5" fill="#5e6883">LEAVES A TOOL</text>
       </svg>
       <ul class="specs">
         <li><b>VERIFIED OUTPUT</b>diffs reviewed · tests green · books reconciled to $0.00</li>
@@ -760,27 +763,27 @@ footer .fine{margin-top:42px;padding-top:24px;border-top:1px solid var(--hairlin
       <div class="tag"><span class="pri">PRIORITY 02</span> · SHARED EYES</div>
       <h3>Drones.</h3>
       <p>Every container in the swarm can fly exactly one drone: a dedicated MAVLink link, its own compute, no shared runtime between aircraft. Flight control stays isolated by architecture, the same way every agent gets its own VM.</p>
-      <p>Perception is pooled. Each drone publishes pose-tagged detections into shared fleet state, so when one drone sees one face of a package, every drone has scope on whether the barcode is there. Coverage becomes a property of the swarm, not the camera. By extension, logistics and automation: yard scans, cycle counts, load verification.</p>
+      <p>Perception is pooled. Every detection a drone makes is tagged with its pose, the camera’s exact position and heading, then published into one shared fleet state. So when one drone sees one face of a package, every drone knows whether the barcode is there. Coverage belongs to the swarm, not to any single camera. By extension, logistics and automation: yard scans, cycle counts, load verification.</p>
       <svg class="track-svg" viewBox="0 0 290 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three drones share views of one package; one resolves the barcode and all know it">
-        <path d="M122 62 l46 0 0 46 -46 0 z" fill="none" stroke="#e9ecf5" stroke-width="1.3"/>
-        <path d="M122 62 l14 -12 46 0 -14 12 z" fill="none" stroke="#e9ecf5" stroke-width="1.3"/>
-        <path d="M168 62 l14 -12 0 46 -14 12 z" fill="none" stroke="#e9ecf5" stroke-width="1.3"/>
-        <g stroke="#ff5546" stroke-width="1.6">
+        <path d="M122 62 l46 0 0 46 -46 0 z" fill="none" stroke="#e9ecf5" stroke-width="1.5"/>
+        <path d="M122 62 l14 -12 46 0 -14 12 z" fill="none" stroke="#e9ecf5" stroke-width="1.5"/>
+        <path d="M168 62 l14 -12 0 46 -14 12 z" fill="none" stroke="#e9ecf5" stroke-width="1.5"/>
+        <g stroke="#ff5546" stroke-width="2">
           <line x1="172" y1="66" x2="172" y2="100"/><line x1="175" y1="64" x2="175" y2="98"/>
           <line x1="178" y1="62" x2="178" y2="96"/><line x1="181" y1="60" x2="181" y2="94"/>
         </g>
-        <g stroke="#e9ecf5" stroke-width="1.4">
-          <path d="M36 28 l10 10 M46 28 l-10 10"/><circle cx="41" cy="33" r="1.8" fill="#e9ecf5"/>
-          <path d="M236 18 l10 10 M246 18 l-10 10"/><circle cx="241" cy="23" r="1.8" fill="#e9ecf5"/>
-          <path d="M244 116 l10 10 M254 116 l-10 10"/><circle cx="249" cy="121" r="1.8" fill="#e9ecf5"/>
+        <g stroke="#e9ecf5" stroke-width="2">
+          <path d="M36 28 l10 10 M46 28 l-10 10"/><circle cx="41" cy="33" r="2.1" fill="#e9ecf5"/>
+          <path d="M236 18 l10 10 M246 18 l-10 10"/><circle cx="241" cy="23" r="2.1" fill="#e9ecf5"/>
+          <path d="M244 116 l10 10 M254 116 l-10 10"/><circle cx="249" cy="121" r="2.1" fill="#e9ecf5"/>
         </g>
-        <line x1="50" y1="38" x2="120" y2="70" stroke="#5481ff" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="236" y1="30" x2="160" y2="52" stroke="#5481ff" stroke-width="1" stroke-dasharray="3 4"/>
-        <line x1="242" y1="116" x2="184" y2="80" stroke="#ff5546" stroke-width="1.3"/>
-        <text x="36" y="20" font-family="JetBrains Mono,monospace" font-size="7.5" letter-spacing="1.5" fill="#9aa3bc">DRONE/01</text>
-        <text x="214" y="12" font-family="JetBrains Mono,monospace" font-size="7.5" letter-spacing="1.5" fill="#9aa3bc">DRONE/02</text>
-        <text x="284" y="152" font-family="JetBrains Mono,monospace" font-size="7.2" letter-spacing="1.2" fill="#ff5546" text-anchor="end">DRONE/03 · READS IT</text>
-        <text x="36" y="152" font-family="JetBrains Mono,monospace" font-size="7.2" letter-spacing="1.2" fill="#e9ecf5">1 SEES IT · ALL KNOW IT</text>
+        <line x1="50" y1="38" x2="120" y2="70" stroke="#5481ff" stroke-width="1.3" stroke-dasharray="3 4"/>
+        <line x1="236" y1="30" x2="160" y2="52" stroke="#5481ff" stroke-width="1.3" stroke-dasharray="3 4"/>
+        <line x1="242" y1="116" x2="184" y2="80" stroke="#ff5546" stroke-width="1.5"/>
+        <text x="36" y="20" font-family="JetBrains Mono,monospace" font-size="9.2" letter-spacing="1.5" fill="#9aa3bc">DRONE/01</text>
+        <text x="214" y="12" font-family="JetBrains Mono,monospace" font-size="9.2" letter-spacing="1.5" fill="#9aa3bc">DRONE/02</text>
+        <text x="284" y="140" font-family="JetBrains Mono,monospace" font-size="8.8" letter-spacing="1.2" fill="#ff5546" text-anchor="end">DRONE/03 · READS IT</text>
+        <text x="36" y="152" font-family="JetBrains Mono,monospace" font-size="8.8" letter-spacing="1.2" fill="#e9ecf5">1 SEES IT · ALL KNOW IT</text>
       </svg>
       <ul class="specs">
         <li><b>CONTROL</b>1 container : 1 drone · MAVLink · ROS 2 nodes</li>
@@ -1301,6 +1304,7 @@ var budget = BUDGET_BASE;
 var DPR = Math.min(window.devicePixelRatio || 1, 2);
 var W=0, H=0;
 var fastFrames = 0;
+var wakeT = -99; /* last direct interaction; lets reduced motion answer a drag */
 var depView = null; /* Uint8Array view over inten for GPU upload */
 var gw=0, gh=0, stride=0, gsize=0, cellX=0, cellY=0;
 var u, v, u0, v0, p, dv;
@@ -1913,7 +1917,7 @@ function logStep(dt){
 
 /* ================= INTERACTION ================= */
 function pointerForce(nx, ny){
-  if (reduced) return;
+  if (reduced) wakeT = t; /* responding to the person is not ambient motion */
   if (!hasPointer){ hasPointer = true; mx = nx; my = ny; return; }
   var dx = nx-mx, dy = ny-my;
   mx = nx; my = ny;
@@ -1927,6 +1931,7 @@ function pointerForce(nx, ny){
 }
 canvas.addEventListener('pointermove', function(e){
   var r = canvas.getBoundingClientRect();
+  if (!r.width || !r.height) return;
   pointerForce((e.clientX-r.left)/r.width*W, (e.clientY-r.top)/r.height*H);
 }, { passive:true });
 canvas.addEventListener('pointerdown', function(e){
@@ -1936,6 +1941,7 @@ canvas.addEventListener('pointerdown', function(e){
 });
 window.addEventListener('pointerup', function(){ pdown = false; });
 canvas.addEventListener('pointerleave', function(){ hasPointer = false; });
+canvas.addEventListener('pointercancel', function(){ pdown = false; hasPointer = false; });
 
 (function(){
   var btns = document.querySelectorAll('.btn[data-target]');
@@ -2199,11 +2205,13 @@ function frame(now){
     fastFrames = 0; alloc();
   }
 
-  if (!reduced){
-    var hue = currentHue();
-    rebuildPalette(hue);
-    if (frameN % 12 === 0) syncAccent(hue);
-
+  var liveRender = !reduced || (t - wakeT < 2.6);
+  if (liveRender){
+    if (!reduced){
+      var hue = currentHue();
+      rebuildPalette(hue);
+      if (frameN % 12 === 0) syncAccent(hue);
+    }
     velStep(dt);
     particleStep();
     render();
